@@ -8,5 +8,12 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Dashboard
         Route::get('/', [DashboardController::class, 'index'])->name('home');
-    });
+
+        require_once 'admin/distrik.php';
+        require_once 'admin/jenisKriteria.php';
+        require_once 'admin/keluhan.php';
+        require_once 'admin/kriteria.php';
+        require_once 'admin/swot.php';
+        require_once 'admin/wilayah.php';
+ });
 });
