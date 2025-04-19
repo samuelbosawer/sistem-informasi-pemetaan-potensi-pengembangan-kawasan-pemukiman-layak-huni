@@ -26,6 +26,9 @@
 {{-- <script src="/src/plugins/src/apex/apexcharts.min.js"></script>
 <script src="/src/assets/js/dashboard/dash_1.js"></script> --}}
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+<script>
+    feather.replace()
+  </script>
 
 @stack('script-footer')
 

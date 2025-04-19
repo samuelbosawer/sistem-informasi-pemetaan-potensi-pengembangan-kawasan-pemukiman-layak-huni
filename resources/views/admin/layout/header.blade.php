@@ -24,6 +24,15 @@
     <link href="/src/assets/css/dark/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
+
+    <link rel="stylesheet" href="/src/plugins/src/font-icons/fontawesome/css/regular.css">
+    <link rel="stylesheet" href="/src/plugins/src/font-icons/fontawesome/css/fontawesome.css">
+    <link href="/src/assets/css/light/scrollspyNav.css" rel="stylesheet" type="text/css">
+    <link href="/src/assets/css/light/components/font-icons.css" rel="stylesheet" type="text/css">
+
+    <link href="/src/assets/css/dark/scrollspyNav.css" rel="stylesheet" type="text/css">
+    <link href="/src/assets/css/dark/components/font-icons.css" rel="stylesheet" type="text/css">
+
     @stack('script-header')
 
 </head>
