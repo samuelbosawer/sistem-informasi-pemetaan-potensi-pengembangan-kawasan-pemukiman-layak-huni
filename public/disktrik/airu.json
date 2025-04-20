@@ -1,0 +1,21 @@
+var airu = {
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "code": 94,
+            "properties": {
+                "Kind": "Sub-District",
+                "Code": "9403081",
+                "nama": "AIRU",
+                "Year": "2013",
+                "Source": "BPS",
+                "Parent": 9403,
+                "City": "JAYAPURA",
+                "Province": "PAPUA",
+                "Country": "INDONESIA"
+            },
+            "geometry":
+        }
+    ]
+}

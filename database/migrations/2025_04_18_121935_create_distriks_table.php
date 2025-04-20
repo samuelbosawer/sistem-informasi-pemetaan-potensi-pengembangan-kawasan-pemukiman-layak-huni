@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('distriks', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_distrik')->nullable();
+            $table->string('keterangan')->nullable();
+            $table->json('geojson')->nullable();
             $table->timestamps();
         });
     }

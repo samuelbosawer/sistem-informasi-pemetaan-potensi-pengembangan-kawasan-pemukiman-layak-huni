@@ -37,6 +37,7 @@
 
 </head>
 <body class="layout-boxed">
+    @include('sweetalert::alert')
     <!-- BEGIN LOADER -->
     <div id="load_screen"> <div class="loader"> <div class="loader-content">
         <div class="spinner-grow align-self-center"></div>
@@ -52,8 +53,6 @@
             </a>
 
             <ul class="navbar-item flex-row ms-lg-auto ms-0">
-
-
 
                 <li class="nav-item theme-toggle-item">
                     <a href="javascript:void(0);" class="nav-link theme-toggle">
