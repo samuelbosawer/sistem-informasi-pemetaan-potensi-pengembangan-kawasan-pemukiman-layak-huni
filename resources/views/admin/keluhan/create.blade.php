@@ -1,6 +1,6 @@
 @extends('admin.layout.tamplate')
 @section('title')
-    Tambah Data Jenis Kriteria - Admin
+{{$judul ?? 'Tambah Keluhan' }} - Admin
 @endsection
 @section('content')
     <!--  BEGIN CONTENT AREA  -->
@@ -17,8 +17,8 @@
                                 <div class="row">
                                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                         <h4 class="fw-bolder text-black">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                            {{$judul ?? 'Tambah Data Jenis Kriteria' }} </h4>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                            {{$judul ?? 'Tambah Keluhan' }} </h4>
                                     </div>
                                 </div>
                             </div>
@@ -27,56 +27,77 @@
                             <div class="widget-content widget-content-area">
 
                                 @if (Request::segment(4) == 'ubah')
-                                    <form action="{{ route('dashboard.jenis-kriteria.update', $data->id) }}" method="post"
+                                    <form action="{{ route('dashboard.keluhan.update', $data->id) }}" method="post"
                                         enctype="multipart/form-data" class="row g-3">
                                         @method('PUT')
                                     @else
-                                        <form action="{{ route('dashboard.jenis-kriteria.store') }}" method="post"
+                                        <form action="{{ route('dashboard.keluhan.store') }}" method="post"
                                             enctype="multipart/form-data" class="row g-3">
                                 @endif
                                 @csrf
                                 <div class="col-md-6">
-                                    <label for="kriteria" class="form-label">Nama kriteria</label>
-                                    <input type="text" name="kriteria" @if (Request::segment(3) == 'detail') disabled @endif  value="{{old('kriteria') ?? ($data->kriteria ?? '')}}" class="form-control" id="kriteria">
-                                    @if ($errors->has('kriteria'))
-                                        <label class="text-danger"> {{ $errors->first('kriteria') }}
+                                    <label for="keluhan" class="form-label">Keluhan</label>
+                                    <input type="text" name="keluhan" @if (Request::segment(3) == 'detail') disabled @endif  value="{{old('keluhan') ?? ($data->keluhan ?? '')}}" class="form-control" id="keluhan">
+                                    @if ($errors->has('keluhan'))
+                                        <label class="text-danger"> {{ $errors->first('keluhan') }}
                                         </label>
                                     @endif
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="jenis_kriteria" class="form-label">Jenis Kriteria</label>
-                                    <input type="text" name="jenis_kriteria" @if (Request::segment(3) == 'detail') disabled @endif  value="{{old('jenis_kriteria') ?? ($data->jenis_kriteria ?? '')}}" class="form-control" id="jenis_kriteria">
-                                    @if ($errors->has('jenis_kriteria'))
-                                        <label class="text-danger"> {{ $errors->first('jenis_kriteria') }}
+                                    <label for="tanggal" class="form-label">Tanggal</label>
+                                    <input type="date" name="tanggal" @if (Request::segment(3) == 'detail') disabled @endif  value="{{old('tanggal') ?? ($data->tanggal ?? '')}}" class="form-control" id="tanggal">
+                                    @if ($errors->has('tanggal'))
+                                        <label class="text-danger"> {{ $errors->first('tanggal') }}
                                         </label>
                                     @endif
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="nilai" class="form-label">Nilai</label>
-                                    <input type="text" name="nilai" @if (Request::segment(3) == 'detail') disabled @endif  value="{{old('nilai') ?? ($data->nilai ?? '')}}" class="form-control" id="nilai">
-                                    @if ($errors->has('nilai'))
-                                        <label class="text-danger"> {{ $errors->first('nilai') }}
+                                    @if (isset($data) && $data->foto)
+                                    <img src="{{asset($data->foto)}}" width="100" rounded alt="" srcset="">
+                                    @endif
+                                    <label for="foto" class="form-label">foto</label>
+                                    <input type="file" name="foto" @if (Request::segment(3) == 'detail') disabled @endif  value="{{old('foto') ?? ($data->foto ?? '')}}" class="form-control" id="foto">
+                                    @if ($errors->has('foto'))
+                                        <label class="text-danger"> {{ $errors->first('foto') }}
                                         </label>
                                     @endif
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="total_nilai" class="form-label">Total Nilai</label>
-                                    <input type="text" name="total_nilai" @if (Request::segment(3) == 'detail') disabled @endif  value="{{old('total_nilai') ?? ($data->total_nilai ?? '')}}" class="form-control" id="total_nilai">
-                                    @if ($errors->has('total_nilai'))
-                                        <label class="text-danger"> {{ $errors->first('total_nilai') }}
+                                    <div class="form-group mb-3">
+
+                                        <label for="user_id"> Pelapor
                                         </label>
-                                    @endif
+                                        <select class="form-control" aria-label="Default select example"
+                                            name="user_id"
+                                            @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif>
+
+                                            @foreach ($users as $k )
+                                                <option value="{{$k->id}}"
+                                                {{ (old('user_id') ?? ($data->user_id ?? '')) == $k->id ? 'selected' : '' }}>
+                                                {{$k->nama}}</option>
+                                            @endforeach
+
+
+                                        </select>
+                                        @if ($errors->has('user_id'))
+                                            <label class="text-danger">
+                                                {{ $errors->first('user_id') }}
+                                            </label>
+                                        @endif
+                                    </div>
                                 </div>
+
+
 
 
                                 <div class="col-md-6">
                                     @if (Request::segment(3) == 'detail')
 
-                                    <a href="{{route('dashboard.jenis-kriteria.ubah',$data->id)}}" class="btn btn-primary"> Ubah Data</a>
-                                    <a href="{{route('dashboard.jenis-kriteria')}}" class="btn btn-success"> Kembali</a>
+                                    <a href="{{route('dashboard.keluhan.ubah',$data->id)}}" class="btn btn-primary"> Ubah Data</a>
+                                    <a href="{{route('dashboard.keluhan')}}" class="btn btn-success"> Kembali</a>
                                     @else
 
                                     <button class="btn btn-primary">Simpan </button>

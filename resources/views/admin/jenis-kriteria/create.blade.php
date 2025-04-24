@@ -1,6 +1,6 @@
 @extends('admin.layout.tamplate')
 @section('title')
-    Tambah Data Jenis Kriteria - Admin
+{{$judul ?? 'Tambah Data Jenis Kriteria' }} - Admin
 @endsection
 @section('content')
     <!--  BEGIN CONTENT AREA  -->

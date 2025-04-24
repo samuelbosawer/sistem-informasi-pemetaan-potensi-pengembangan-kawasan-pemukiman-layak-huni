@@ -9,7 +9,7 @@ class HasilSwotController extends Controller
 {
     public function index(Request $request)
     {
-
+        return view('admin.swot.index');
     }
 
     public function create()

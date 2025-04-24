@@ -9,7 +9,7 @@ class RekomendasiKeluhanController extends Controller
 {
     public function index(Request $request)
     {
-
+        return view('admin.rkeluhan.index');
     }
 
     public function create()

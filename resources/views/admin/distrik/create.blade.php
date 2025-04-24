@@ -1,6 +1,6 @@
 @extends('admin.layout.tamplate')
 @section('title')
-    Distrik - Admin
+{{$judul ?? 'Tambah Data Distrik' }} - Admin
 @endsection
 @section('content')
     <!--  BEGIN CONTENT AREA  -->

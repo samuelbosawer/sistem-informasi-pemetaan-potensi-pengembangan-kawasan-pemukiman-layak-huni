@@ -77,8 +77,8 @@
                     </a>
                 </li>
 
-                <li class="menu">
-                    <a href="./app-calendar.html" aria-expanded="false" class="dropdown-toggle">
+                <li class="menu @if (Request::segment(2) == 'swot' || Request::segment(3) == 'swot')  active @endif">
+                    <a href="{{route('dashboard.swot')}}" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                             <span>Hasil Swot</span>
@@ -93,8 +93,8 @@
                     <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>REKOMENDASI</span></div>
                 </li>
 
-                <li class="menu">
-                    <a href="./app-calendar.html" aria-expanded="false" class="dropdown-toggle">
+                <li class="menu @if (Request::segment(2) == 'wilayah' || Request::segment(3) == 'wilayah')  active @endif">
+                    <a href="{{route('dashboard.wilayah')}}" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                             <span> Wilayah</span>
@@ -104,7 +104,7 @@
 
 
 
-                <li class="menu">
+                <li class="menu @if (Request::segment(2) == 'rkeluhan' || Request::segment(3) == 'rkeluhan')  active @endif">
                     <a href="{{route('dashboard.keluhan')}}" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>

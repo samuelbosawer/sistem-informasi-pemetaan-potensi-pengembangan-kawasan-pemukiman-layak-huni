@@ -20,7 +20,7 @@
                                         <div class="row">
                                             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                                 <h4 class="fw-bolder text-black">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                                                      Data Keluhan</h4>
                                             </div>
                                         </div>
@@ -45,8 +45,9 @@
                                                     <tr class="bg-primary text-white">
                                                         <th scope="col " width="5" class="text-light fw-bolder">No</th>
                                                         <th scope="col " class="text-light fw-bolder">Keluhan</th>
+                                                        <th scope="col " class="text-light fw-bolder">Tanggal</th>
                                                         <th scope="col " class="text-light fw-bolder">Foto</th>
-                                                        <th scope="col " class="text-light fw-bolder">Yang Membuat Keluhan</th>
+                                                        <th scope="col " class="text-light fw-bolder">Pelapor</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>
@@ -56,8 +57,15 @@
                                                         <td>{{++$i}}</td>
                                                         <td> {{$data->keluhan}}</td>
                                                         <td> {{$data->tanggal}}  </td>
-                                                        <td> {{$data->foto}}  </td>
-                                                        <td> {{$data->user->nama}}  </td>
+                                                        <td>
+                                                            @if ($data->foto != null)
+                                                                <img src="{{asset($data->foto)}}" width="100" class="rounded" alt="" srcset="">
+                                                            @else
+                                                                -
+                                                            @endif
+
+                                                        </td>
+                                                        <td> {{$data->user->nama ?? ''}}  </td>
                                                         <td class="text-center">
                                                             <div class="action-btns">
                                                                 <a href="{{route('dashboard.keluhan.detail', $data->id)}}" class="action-btn btn-view bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="Detail">
