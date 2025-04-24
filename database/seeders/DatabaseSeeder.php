@@ -16,5 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(DistrikSeeder::class);
+        $this->call(JenisKriteriaSeeder::class);
+        $this->call(KriteriaSeeder::class);
+        $this->call(KeluhanSeeder::class);
     }
 }

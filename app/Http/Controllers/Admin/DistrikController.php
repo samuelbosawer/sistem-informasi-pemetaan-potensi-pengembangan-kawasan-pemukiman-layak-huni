@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Distrik;
+use App\Models\Kriteria;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -57,9 +58,9 @@ class DistrikController extends Controller
 
     public function show(string $id)
     {
-
+        $judul = 'Detail Data Distrik';
         $data = Distrik::where('id',$id)->first();
-        return view('admin.distrik.create', compact('data'));
+        return view('admin.distrik.create', compact('data','judul'));
     }
 
 

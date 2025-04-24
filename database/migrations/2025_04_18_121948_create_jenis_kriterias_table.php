@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('jenis_kriterias', function (Blueprint $table) {
             $table->id();
+            $table->string('kriteria');
+            $table->string('nilai');
+            $table->string('jenis_kriteria');
+            $table->string('total_nilai');
             $table->timestamps();
         });
     }
