@@ -57,6 +57,13 @@
                     <li class="nav-item">
                         <a href="#kontak" class="nav-link">Kontak</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{route('login')}}" class="nav-link">Login</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{route('daftar')}}" class="nav-link">Buat Akun</a>
+                    </li>
                 </ul>
             </div>
         </div>
