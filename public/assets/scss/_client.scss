@@ -1,0 +1,13 @@
+.testi_boxes {
+    border: 1px solid $gray-200;
+    border-top: 4px solid $teal;
+}
+
+.testi_icon {
+    i {
+        height: 64px;
+        width: 64px;
+        line-height: 64px;
+        border-radius: 10px 10px 0px;
+    }
+}

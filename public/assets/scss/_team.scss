@@ -1,0 +1,21 @@
+.team_box {
+    border: 1px dotted $gray-400;
+    .follow_btn {
+        padding: 10px 15px;
+    }
+
+}
+
+.team_box .team_social li a {
+    height: 35px;
+    width: 35px;
+    line-height: 33px;;
+    transition: all 0.5s;
+}
+
+.team_box .team_social li:hover a {
+    border-color: $primary !important;
+    background: rgba(19, 206, 103, 0.12);
+    color: $primary !important;
+
+}

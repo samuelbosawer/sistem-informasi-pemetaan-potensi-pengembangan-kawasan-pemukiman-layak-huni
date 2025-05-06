@@ -1,0 +1,35 @@
+/*
+-------------------------------------------------------------------------
+* Template Name    :  - Bootstrap Responsive Landing Page Templates   * 
+* Author           : ThemesBoss                                          *
+* Version          : 2.0.0                                              *
+* File Description : Main Css file of the template                      *
+*------------------------------------------------------------------------
+*/
+// index-13
+
+//mixin
+@import "variables";
+@import "mixin/maps";
+@import "mixin/root";
+
+//componets
+@import "componets/helper";
+@import "componets/button";
+
+@import "basic";
+@import "client";
+@import "contact";
+@import "cta-section";
+@import "features";
+@import "footer";
+@import "get-started-cta";
+@import "great-people";
+@import "home";
+@import "how-it-work";
+@import "navbar";
+@import "pricing";
+@import "responsive";
+@import "services";
+@import "team";
+@import "video-section";

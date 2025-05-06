@@ -1,0 +1,52 @@
+.footer_detail {
+    .fot_social {
+        .social-icon {
+            border: 2px solid $gray-600;
+            transition: all 0.5s;
+            width: 42px;
+            height: 42px;
+            line-height: 38px;
+
+            &:hover {
+                border-color: $primary;
+                color: $primary !important;
+            }
+        }
+    }
+
+    .footer_menu {
+        li {
+            a {
+                font-weight: 500;
+                transition: all 0.5s;
+
+                &:hover {
+                    color: $primary !important;
+                }
+            }
+        }
+    }
+
+    .footer_logo {
+        height: 34px;
+    }
+
+    .copy-rights {
+        line-height: 43px;
+    }
+
+    .fot_bor {
+        height: 2px;
+        background: $gray-800;
+    }
+}
+
+.footer_detail .footer_menu li::after {
+    content: "|";
+    margin: 0 20px;
+    color: $gray-600;
+}
+
+.footer_detail .footer_menu li:last-child:after {
+    content: "";
+}

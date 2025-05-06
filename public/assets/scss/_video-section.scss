@@ -1,0 +1,37 @@
+.bg-video {
+    background-image: url(../images/bg-video.jpg);
+    background-size: cover;
+    background-position: center center;
+}
+
+.video-subtitle {
+    max-width: 600px;
+    text-align: center;
+}
+
+.video-btn-white {
+    a {
+        border: 2px solid $white;
+        padding: 4px 15px 4px 5px;
+        border-radius: 58px;
+        color: $white !important;
+        display: inline-block;
+
+        span {
+            position: relative;
+            top: -5px;
+        }
+    }
+
+    i {
+        background: $primary;
+        height: 56px;
+        width: 56px;
+        line-height: 56px;
+        border-radius: 50%;
+        font-size: 26px;
+        display: inline-block;
+        text-align: center;
+        margin-right: 15px;
+    }
+}

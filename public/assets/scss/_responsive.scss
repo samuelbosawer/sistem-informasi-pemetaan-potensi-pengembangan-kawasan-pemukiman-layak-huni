@@ -1,0 +1,124 @@
+
+@media (max-width: 768px) {
+    .custom-nav {
+        margin-top: 0px;
+        padding: 10px 0px !important;
+        background-color: $white !important;
+    }
+    .custom-nav .navbar-nav li a:before {
+        content: '';
+        display: none;
+    }
+    .custom-nav .navbar-nav li a {
+        margin: 0 0px;
+        padding: 6px 0;
+        color: $black;
+    }
+    .custom-nav .navbar-nav li.active a {
+        color: $primary;
+    }
+    .custom-nav>.container {
+        width: 90%;
+    }
+    .custom-nav .logo .logo-dark {
+        display: inline-block;
+    }
+    .custom-nav .logo .logo-light {
+        display: none;
+    }
+    .custom-nav .navbar-brand.logo img {
+        height: 26px;
+    }
+    .navbar-nav {
+        margin-top: 0px;
+    }
+    .navbar-toggler {
+        font-size: 29px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        color: $black;
+    }
+    .header_title {
+        font-size: 38px;
+        line-height: 1.2;
+    }
+    .header_subtitle {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+    .h-100vh {
+        height: auto;
+    }
+    .clip-home {
+        clip-path: none;
+    }
+    .vertical-content {
+        display: inherit;
+    }
+    .home-bg-color,
+    .h-100vh.jarallax,
+    .home-bg-img,
+    .home-bg-color-gradient,
+    .h-100vh,
+    .home-half,
+    .half-slider{
+        padding: 125px 0 130px 0;
+    }
+    .custom-nav .navbar-brand.logo img {
+        height: 26px;
+    }
+    .copy-rights {
+        line-height: 26px;
+    }
+    .logo_img img {
+        margin-top: 16px;
+    }
+    .features-icon {
+        top: 9%;
+    }
+    .features-desc {
+        margin-left: 13%;
+    }
+    .features-heading {
+        line-height: 1.4;
+        font-size: 24px;
+    }
+    .work_border_left {
+        border: none;
+    }
+    .price_box.active {
+        transform: scale(1.0);
+    }
+    .price_box .price_features {
+        padding: 0px 20px;
+    }
+    .copy-rights {
+        line-height: 26px;
+    }
+    .footer_menu li::after {
+        display: none;
+    }
+    .footer_menu li {
+        display: block;
+    }
+    .float_none.float-end,
+    .float_none.float-start {
+        float: none !important;
+        text-align: center;
+    }
+    .carousel-control-prev>span,.carousel-control-next>span{
+        font-size: 30px;
+    }
+    .bg-home-slider .carousel-control-next, .carousel-control-prev{
+        width: 10%;
+    }
+}
+
+@media (max-width: 768px) and (min-width: 426px) {
+    .features-desc {
+        margin-left: 7% !important;
+    }
+    .features-icon {
+        top: 11% !important;
+    }
+}

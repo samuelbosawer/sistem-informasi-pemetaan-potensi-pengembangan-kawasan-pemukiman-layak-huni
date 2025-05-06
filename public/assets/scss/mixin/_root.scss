@@ -1,0 +1,78 @@
+:root {
+    @each $color, $value in $grays {
+        --#{$prefix}gray-#{$color}: #{$value};
+    }
+
+    @each $color, $value in $theme-colors {
+        --#{$prefix}#{$color}: #{$value};
+        --#{$prefix}#{$color}-rgb: #{#{red($value)},
+        #{green($value)},
+        #{blue($value)}
+    }
+
+    ;
+}
+
+@each $color, $value in $theme-colors-text {
+    --#{$prefix}#{$color}-text-emphasis: #{$value};
+}
+
+@each $color, $value in $theme-colors-bg-subtle {
+    --#{$prefix}#{$color}-bg-subtle: #{$value};
+}
+
+@each $color, $value in $theme-colors-border-subtle {
+    --#{$prefix}#{$color}-border-subtle: #{$value};
+}
+
+--#{$prefix}-border-color: #{$border-color};
+--#{$prefix}-body-color: #{$body-color};
+--#{$prefix}-body-color-rgb: #{#{red($body-color)},
+#{green($body-color)},
+#{blue($body-color)}
+}
+
+;
+
+--#{$prefix}-body-bg: #{$body-bg};
+--#{$prefix}-body-bg-rgb: #{#{red($body-bg)},
+#{green($body-bg)},
+#{blue($body-bg)}
+}
+
+;
+
+--#{$prefix}-body-secondary-color: #{$body-secondary-color};
+--#{$prefix}-body-secondary-color-rgb: #{#{red($body-secondary-color)},
+#{green($body-secondary-color)},
+#{blue($body-secondary-color)}
+}
+
+;
+
+--#{$prefix}-body-tertiary-color: #{$body-tertiary-color};
+--#{$prefix}-body-tertiary-color-rgb: #{#{red($body-tertiary-color)},
+#{green($body-tertiary-color)},
+#{blue($body-tertiary-color)}
+}
+
+;
+
+--#{$prefix}-body-tertiary-bg: #{$body-tertiary-bg};
+--#{$prefix}-body-tertiary-bg-rgb: #{#{red($body-tertiary-bg)},
+#{green($body-tertiary-bg)},
+#{blue($body-tertiary-bg)}
+}
+
+;
+
+--#{$prefix}-body-emphasis-color: #{$body-emphasis-color};
+--#{$prefix}-body-emphasis-color-rgb: #{#{red($body-emphasis-color)},
+#{green($body-emphasis-color)},
+#{blue($body-emphasis-color)}
+}
+
+;
+
+--#{$prefix}font-sans-serif: #{$font-family-base};
+}

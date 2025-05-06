@@ -1,0 +1,86 @@
+.home-bg-img {
+    background-image: url('../images/home-bg-2.jpg');
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+}
+
+.header_title {
+    font-size: 56px;
+    line-height: 1.2;
+    text-transform: capitalize;
+}
+
+.header_subtitle {
+    line-height: 1.8;
+    font-size: 18px;
+    max-width: 575px;
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.play-btn {
+    border: 2px solid $white;
+    border-radius: 50%;
+    color: $black !important;
+    background-color: $white;
+    width: 70px;
+    height: 70px;
+    display: block;
+    font-size: 30px;
+    line-height: 66px;
+    margin-top: 10px;
+    text-align: center;
+    transition: all 0.5s;
+
+    &:hover {
+        background-color: $primary;
+        color: $white !important;
+        border-color: $primary;
+    }
+}
+
+/*--- DEMO 2 ---*/
+
+.home-half {
+    padding: 200px 0px;
+}
+
+/*--- DEMO 6---*/
+
+.bg-gradient {
+    background: $black;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3c405a, #101010);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3c405a, #101010);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/*--- DEMO 7---*/
+
+.bg-pattern {
+    background-image: url(../images/pattern.png);
+}
+
+/*--- DEMO 8---*/
+
+.bg-home-slider .carousel-control-next,
+.carousel-control-prev {
+    width: 6%;
+}
+
+.bg-home-slider .carousel-item {
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+.carousel-control-prev>span,
+.carousel-control-next>span {
+    font-size: 50px;
+}
+
+/*--- DEMO 9---*/
+
+.half-slider {
+    padding: 200px 0px;
+}
