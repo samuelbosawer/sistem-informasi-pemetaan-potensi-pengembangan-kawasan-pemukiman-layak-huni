@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Masuk </title>
+    <title>Daftar Akun </title>
     <link rel="icon" type="image/x-icon" href="/src/assets/img/logo.svg"/>
     <link href="/layouts/semi-dark-menu/css/light/loader.css" rel="stylesheet" type="text/css" />
     <link href="/layouts/semi-dark-menu/css/dark/loader.css" rel="stylesheet" type="text/css" />
@@ -23,7 +23,6 @@
 
 </head>
 <body class="form">
-    @include('sweetalert::alert')
 
     <!-- BEGIN LOADER -->
     <div id="load_screen"> <div class="loader"> <div class="loader-content">
@@ -41,19 +40,48 @@
                     <div class="card mt-3 mb-3">
                         <div class="card-body">
 
-                            <form method="POST" action="{{ route('login') }}">
+                            <form method="POST" action="{{ route('daftarStore') }}">
                                 @csrf
 
                             <div class="row">
                                 <div class="col-md-12 mb-3 text-center">
 
-                                    <h2 class="fw-bolder text-primary">Login</h2>
-                                    <p>Masukkan email dan kata sandi Anda untuk dapat login</p>
+                                    <h2 class="fw-bolder text-primary">Buat Akun Baru</h2>
+                                    <p>Daftarkan diri anda sebagai investor</p>
 
                                 </div>
+
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label class="form-label">Email</label>
+                                        <label class="form-label">Nama Lengkap <span class="text-danger">*</span> </label>
+                                        <input type="text" name="nama" value="{{ old('nama') }}" class="form-control">
+
+                                        @error('nama')
+                                        <div class="text-danger">
+                                                {{ $message }}
+                                        </div>
+                                    @enderror
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">No Hp <span class="text-danger">*</span> </label>
+                                        <input type="text" name="no_hp" value="{{ old('no_hp') }}" class="form-control">
+
+                                        @error('no_hp')
+                                        <div class="text-danger">
+                                                {{ $message }}
+                                        </div>
+                                    @enderror
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Email <span class="text-danger">*</span> </label>
                                         <input type="email" name="email" value="{{ old('email') }}" class="form-control">
 
                                         @error('email')
@@ -62,11 +90,31 @@
                                         </div>
                                     @enderror
 
+                                </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group mb-3">
+
+                                        <label for="jenis_kelamin"> Jenis Kelamin <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="form-control" aria-label="Default select example"
+                                            name="jenis_kelamin">
+                                               <option value="Pria" @if(old('jenis_kelamin') == 'Pria' ) selected @endif >Pria</option>
+                                               <option value="Wanita" @if(old('jenis_kelamin') == 'Wanita' ) selected @endif >Wanita</option>
+                                        </select>
+                                        @if ($errors->has('jenis_kelamin'))
+                                            <label class="text-danger">
+                                                {{ $errors->first('jenis_kelamin') }}
+                                            </label>
+                                        @endif
                                     </div>
                                 </div>
+
+
                                 <div class="col-12">
                                     <div class="mb-4">
-                                        <label class="form-label">Password</label>
+                                        <label class="form-label">Password <span class="text-danger">*</span> </label>
                                         <input type="password" name="password" class="form-control">
 
                                         @error('password')
@@ -77,20 +125,25 @@
 
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="mb-3">
-                                        <div class="form-check form-check-primary form-check-inline">
-                                            <input class="form-check-input me-3" type="checkbox" id="form-check-default" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="form-check-default">
-                                              Ingat Saya
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="col-12">
                                     <div class="mb-4">
-                                        <button class="btn btn-primary w-100">Masuk</button>
+                                        <label class="form-label">Konfirmasi Password <span class="text-danger">*</span> </label>
+                                        <input type="password" name="password_confirmation" class="form-control">
+
+                                        @error('password_confirmation')
+                                        <div class="text-danger">
+                                                {{ $message }}
+                                        </div>
+                                    @enderror
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12">
+                                    <div class="mb-4">
+                                        <button class="btn btn-primary w-100">Daftar</button>
                                     </div>
                                 </div>
 
@@ -98,7 +151,7 @@
 
                                 <div class="col-12">
                                     <div class="text-center">
-                                        <p class="mb-0">Belum Punya Akun ? <a href="/daftar" class="text-warning">Daftar</a></p>
+                                        <p class="mb-0">Sudah Punya Akun ? <a href="/login" class="text-warning">Login</a></p>
                                     </div>
                                 </div>
 

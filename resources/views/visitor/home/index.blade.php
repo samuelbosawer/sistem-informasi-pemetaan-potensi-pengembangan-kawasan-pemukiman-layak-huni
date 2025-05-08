@@ -57,13 +57,35 @@
                     <li class="nav-item">
                         <a href="#kontak" class="nav-link">Kontak</a>
                     </li>
-                    <li class="nav-item">
+
+                   @if (!Auth::user())
+                   <li class="nav-item">
                         <a href="{{route('login')}}" class="nav-link">Login</a>
                     </li>
 
                     <li class="nav-item">
                         <a href="{{route('daftar')}}" class="nav-link">Buat Akun</a>
                     </li>
+
+                    @else
+
+                    <li class="nav-item">
+                        <a href="{{route('dashboard.home')}}" class="nav-link">Dashboard</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('logout') }}"class="nav-link" onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">Logout</a>
+                    </li>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+
+
+                   @endif
+
+
                 </ul>
             </div>
         </div>
