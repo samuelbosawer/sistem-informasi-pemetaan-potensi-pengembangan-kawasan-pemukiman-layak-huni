@@ -19,7 +19,7 @@
                                     <div class="widget-header">
                                         <div class="row">
                                             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                                <h4 class="fw-bolder text-black">
+                                                <h4 class="fw-bolder ">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                                                      Data Jenis Kriteria</h4>
                                             </div>
@@ -43,22 +43,18 @@
                                             <table class="table table-bordered table-hover table-striped">
                                                 <thead>
                                                     <tr class="bg-primary text-white">
-                                                        <th scope="col " width="5" class="text-light fw-bolder">No</th>
+                                                        <th scope="col " width="5" class="text-light fw-bolder">Kode Kriteria</th>
                                                         <th scope="col " class="text-light fw-bolder">Nama Kriteria</th>
-                                                        <th scope="col " class="text-light fw-bolder">Nilai</th>
-                                                        <th scope="col " class="text-light fw-bolder">Jenis Kriteria</th>
-                                                        <th scope="col " class="text-light fw-bolder">Total Nilai</th>
+                                                        <th scope="col " class="text-light fw-bolder">Skor</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($datas as $data )
                                                     <tr>
-                                                        <td>{{++$i}}</td>
+                                                        <td> {{$data->kode_kriteria}}</td>
                                                         <td> {{$data->kriteria}}</td>
-                                                        <td> {{$data->nilai}}  </td>
-                                                        <td> {{$data->jenis_kriteria}}  </td>
-                                                        <td> {{$data->total_nilai}}  </td>
+                                                        <td> {{$data->skor}}  </td>
                                                         <td class="text-center">
                                                             <div class="action-btns">
                                                                 <a href="{{route('dashboard.jenis-kriteria.detail', $data->id)}}" class="action-btn btn-view bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="Detail">

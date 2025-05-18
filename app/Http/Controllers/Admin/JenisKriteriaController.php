@@ -15,11 +15,12 @@ class JenisKriteriaController extends Controller
             [function ($query) use ($request) {
                 if (($s = $request->s)) {
                     $query->orWhere('kriteria', 'LIKE', '%' . $s . '%')
-                    ->orWhere('jenis_kriteria', 'LIKE', '%' . $s . '%')
+                    ->orWhere('kode_kriteria', 'LIKE', '%' . $s . '%')
+                    ->orWhere('skor', 'LIKE', '%' . $s . '%')
                         ->get();
                 }
             }]
-        ])->orderBy('id', 'desc')->paginate(10);
+        ])->orderBy('id', 'asc')->paginate(10);
         return view('admin.jenis-kriteria.index',compact('datas'))->with('i',(request()->input('page', 1) - 1) * 10);
     }
 
@@ -33,18 +34,22 @@ class JenisKriteriaController extends Controller
         $request->validate(
             [
                 'kriteria' => 'required',
+                'skor' => 'required|numeric',
+                'kode_kriteria' => 'required',
             ],
             [
                 'kriteria.required' => 'Tidak boleh kosong',
+                'skor.required' => 'Tidak boleh kosong',
+                'skor.numeric' => 'Tidak boleh huruf',
+                'kode_kriteria.required' => 'Tidak boleh kosong',
                 // 'geojson.json' => 'Harus format json',
             ]
         );
         $data = new JenisKriteria();
 
         $data->kriteria   = $request->kriteria;
-        $data->nilai   = $request->nilai;
-        $data->jenis_kriteria   = $request->jenis_kriteria;
-        $data->total_nilai   = $request->total_nilai;
+        $data->skor   = $request->skor;
+        $data->kode_kriteria   = $request->kode_kriteria;
 
         $data->save();
         alert()->success('Berhasil', 'Tambah data berhasil')->autoclose(3000);
@@ -68,20 +73,24 @@ class JenisKriteriaController extends Controller
 
     public function update(Request $request, string $id)
     {
-        $request->validate(
+       $request->validate(
             [
                 'kriteria' => 'required',
+                'skor' => 'required|numeric',
+                'kode_kriteria' => 'required',
             ],
             [
                 'kriteria.required' => 'Tidak boleh kosong',
+                'skor.required' => 'Tidak boleh kosong',
+                'skor.numeric' => 'Tidak boleh huruf',
+                'kode_kriteria.required' => 'Tidak boleh kosong',
                 // 'geojson.json' => 'Harus format json',
             ]
         );
         $data = JenisKriteria::find($id);
         $data->kriteria   = $request->kriteria;
-        $data->nilai   = $request->nilai;
-        $data->jenis_kriteria   = $request->jenis_kriteria;
-        $data->total_nilai   = $request->total_nilai;
+        $data->skor   = $request->skor;
+        $data->kode_kriteria   = $request->kode_kriteria;
 
         $data->update();
         alert()->success('Berhasil', 'Ubah data berhasil')->autoclose(3000);

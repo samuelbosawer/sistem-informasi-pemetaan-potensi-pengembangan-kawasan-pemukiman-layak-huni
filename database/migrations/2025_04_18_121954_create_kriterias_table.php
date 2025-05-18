@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('kriterias', function (Blueprint $table) {
             $table->id();
-            $table->string('rating')->nullable();
-            $table->string('bobot')->nullable();
-            $table->string('skor')->nullable();
-            $table->string('total_nilai_faktor')->nullable();
-            $table->bigInteger('jenis_kriteria_id')->nullable();
+            $table->string('kode_distrik')->nullable();
+            $table->string('kode_kriteria')->nullable();
+            $table->string('nilai')->nullable();
+            $table->string('label')->nullable();
             $table->timestamps();
         });
     }

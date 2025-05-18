@@ -19,6 +19,7 @@ class DistrikController extends Controller
                 if (($s = $request->s)) {
                     $query->orWhere('nama_distrik', 'LIKE', '%' . $s . '%')
                         ->orWhere('keterangan', 'LIKE', '%' . $s . '%')
+                        ->orWhere('kode_distrik', 'LIKE', '%' . $s . '%')
                         ->get();
                 }
             }]

@@ -3,6 +3,24 @@
     Dashboard - Admin
 @endsection
 @section('content')
+<style>
+    #map { height: 100vh; }
+
+    /* Pindahkan kontrol layer ke kiri atas */
+    .leaflet-left .leaflet-control-layers {
+        text-align: left;
+    }
+
+    /* Atur agar teks layer di dalam kontrol rata kiri */
+    .leaflet-control-layers-base label,
+    .leaflet-control-layers-overlays label {
+        text-align: left;
+        display: block;
+        width: 100%;
+        white-space: normal;
+    }
+</style>
+
     <!--  BEGIN CONTENT AREA  -->
     <div id="content" class="main-content">
         <div class="layout-px-spacing">
@@ -194,55 +212,64 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-        <script type="text/javascript">
-        const map = L.map('map').setView([-2.5744, 140.5178], 10); // Koordinat Jayapura
+      <script>
+       const map = L.map('map').setView([-2.5744, 140.5178], 10); // Titik tengah: Jayapura
 
-// Pane khusus untuk label
-map.createPane('labels');
-map.getPane('labels').style.zIndex = 650;
-map.getPane('labels').style.pointerEvents = 'none';
+    // Peta dasar: OpenStreetMap
+    const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    });
 
-// Attribution
-const cartodbAttribution =
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-    '&copy; <a href="https://carto.com/attribution">CARTO</a>';
+    // Peta dasar: Satelit dari ESRI
+    const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: '&copy; Esri, Maxar, Earthstar Geographics'
+    });
 
-// Basemap layers
-const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: cartodbAttribution
-});
+    // Tambahkan OSM sebagai default
+    osm.addTo(map);
 
-const positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-    attribution: cartodbAttribution
-});
+    // Data GeoJSON dari Laravel
+    const geojsonData = {!! $geojson !!};
 
-const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: '&copy; <a href="https://www.esri.com">Esri</a> &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
-});
+    // Fungsi untuk warna acak
+    function getRandomColor() {
+        return '#' + Math.floor(Math.random()*16777215).toString(16);
+    }
 
-// Label layer untuk CartoDB
-const positronLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', {
-    attribution: cartodbAttribution,
-    pane: 'labels'
-});
+    // Layer distrik per fitur
+    const distrikLayers = {};
 
-// Tambahkan default layer
-positron.addTo(map);
-positronLabels.addTo(map);
+    geojsonData.features.forEach(feature => {
+        const color = getRandomColor();
+        const nama = feature.properties.nama_distrik || 'Tanpa Nama';
+        const ket = feature.properties.keterangan || '';
 
-// Group layer untuk kontrol
-const baseMaps = {
-    "OpenStreetMap": osm,
-    "CartoDB Positron": positron,
-    "ESRI Satellite": esriSat
-};
+        const layer = L.geoJSON(feature, {
+            style: {
+                color: color,
+                weight: 2,
+                fillOpacity: 0.5
+            },
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(`<strong>${nama}</strong><br>${ket}`);
+            }
+        });
 
-const overlayMaps = {
-    "Labels (Positron)": positronLabels
-};
+        distrikLayers[nama] = layer;
+        layer.addTo(map);
+    });
 
-// Tambahkan layer control ke peta
-L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
+    // Base maps
+    const baseMaps = {
+        "OpenStreetMap": osm,
+        "ESRI Satellite": esriSat
+    };
 
-        </script>
+    // Layer control di kiri atas
+    L.control.layers(baseMaps, distrikLayers, {
+        collapsed: false,
+        position: 'topleft'
+    }).addTo(map);
+
+</script>
     @endsection
