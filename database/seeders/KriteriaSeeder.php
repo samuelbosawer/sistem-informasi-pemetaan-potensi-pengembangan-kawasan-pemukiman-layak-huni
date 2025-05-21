@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Kriteria;
+use Illuminate\Support\Facades\DB;
 
 class KriteriaSeeder extends Seeder
 {
@@ -676,7 +677,7 @@ class KriteriaSeeder extends Seeder
 
 
     ];
-
+  DB::table('topses')->insert($data);
 
 // C12  =	2	1	3	2	4	4	4	1	2	4	3	4	4	4	4	1	4	4	1
 

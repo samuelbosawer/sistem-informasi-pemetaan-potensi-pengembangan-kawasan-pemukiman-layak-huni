@@ -16,7 +16,10 @@ class JenisKriteriaController extends Controller
                 if (($s = $request->s)) {
                     $query->orWhere('kriteria', 'LIKE', '%' . $s . '%')
                     ->orWhere('kode_kriteria', 'LIKE', '%' . $s . '%')
-                    ->orWhere('skor', 'LIKE', '%' . $s . '%')
+                    ->orWhere('penilaian', 'LIKE', '%' . $s . '%')
+                    ->orWhere('rating', 'LIKE', '%' . $s . '%')
+                    ->orWhere('faktor', 'LIKE', '%' . $s . '%')
+                    ->orWhere('label', 'LIKE', '%' . $s . '%')
                         ->get();
                 }
             }]

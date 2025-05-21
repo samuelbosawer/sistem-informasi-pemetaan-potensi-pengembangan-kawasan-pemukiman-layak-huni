@@ -16,9 +16,9 @@ public function kriteria()
     return $this->belongsTo(JenisKriteria::class, 'kode_kriteria', 'kode_kriteria');
 }
 
-public function alternatif()
-{
-    return $this->belongsTo(Distrik::class, 'kode_distrik', 'kode_distrik');
-}
+// public function alternatif()
+// {
+//     return $this->belongsTo(Distrik::class, 'kode_distrik', 'kode_distrik');
+// }
 
 }

@@ -23,7 +23,7 @@ class DistrikController extends Controller
                         ->get();
                 }
             }]
-        ])->orderBy('id', 'desc')->paginate(10);
+        ])->orderBy('kode_distrik', 'asc')->paginate(10);
         return view('admin.distrik.index',compact('datas'))->with('i',(request()->input('page', 1) - 1) * 10);
     }
 

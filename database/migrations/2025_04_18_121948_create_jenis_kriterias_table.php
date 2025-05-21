@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('kode_kriteria');
             $table->string('kriteria');
-            $table->string('skor');
+            $table->string('penilaian')->nullable();
+            $table->string('rating')->nullable();
+            $table->string('faktor');
+            $table->string('label');
             $table->timestamps();
         });
     }

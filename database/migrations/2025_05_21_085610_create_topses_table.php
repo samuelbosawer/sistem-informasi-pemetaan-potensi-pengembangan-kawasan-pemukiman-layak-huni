@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kriterias', function (Blueprint $table) {
+        Schema::create('topses', function (Blueprint $table) {
             $table->id();
-
+             $table->string('kode_distrik')->nullable();
+            $table->string('kode_kriteria')->nullable();
+            $table->string('nilai')->nullable();
+            $table->string('label')->nullable();
             $table->timestamps();
         });
     }
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kriterias');
+        Schema::dropIfExists('topses');
     }
 };

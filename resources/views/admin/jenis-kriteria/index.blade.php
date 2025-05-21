@@ -43,9 +43,12 @@
                                             <table class="table table-bordered table-hover table-striped">
                                                 <thead>
                                                     <tr class="bg-primary text-white">
-                                                        <th scope="col " width="5" class="text-light fw-bolder">Kode Kriteria</th>
-                                                        <th scope="col " class="text-light fw-bolder">Nama Kriteria</th>
-                                                        <th scope="col " class="text-light fw-bolder">Skor</th>
+                                                        <th scope="col " width="5" class="text-light fw-bolder">Kode</th>
+                                                        <th scope="col " class="text-light fw-bolder">Kriteria</th>
+                                                        <th scope="col " class="text-light fw-bolder">Penilaian</th>
+                                                        <th scope="col " class="text-light fw-bolder">Rating</th>
+                                                        <th scope="col " class="text-light fw-bolder">Faktor</th>
+                                                        <th scope="col " class="text-light fw-bolder">Label</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>
@@ -54,7 +57,10 @@
                                                     <tr>
                                                         <td> {{$data->kode_kriteria}}</td>
                                                         <td> {{$data->kriteria}}</td>
-                                                        <td> {{$data->skor}}  </td>
+                                                        <td> {{$data->penilaian}}  </td>
+                                                        <td> {{$data->rating}} </td>
+                                                        <td> {{$data->faktor}} </td>
+                                                        <td> {{$data->label}} </td>
                                                         <td class="text-center">
                                                             <div class="action-btns">
                                                                 <a href="{{route('dashboard.jenis-kriteria.detail', $data->id)}}" class="action-btn btn-view bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="Detail">

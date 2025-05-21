@@ -1,6 +1,6 @@
 @extends('admin.layout.tamplate')
 @section('title')
-    Perhitungan Swot - Admin
+    Perhitungan Topsis - Admin
 @endsection
 @section('content')
     <!--  BEGIN CONTENT AREA  -->
@@ -27,7 +27,7 @@
                                                 <rect x="8" y="2" width="8" height="4" rx="1"
                                                     ry="1"></rect>
                                             </svg>
-                                            Perhitungan Swot
+                                            Perhitungan Topsis
                                         </h4>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
                                 <div class="d-flex justify-content-between">
 
                                     <div class="col-6">
-                                        <h3>Pencarian Nilai IFAS dan EFAS</h3>
+                                        <h3>Nilai AS dari setiap Kriteria</h3>
                                     </div>
                                 </div>
 
