@@ -37,22 +37,29 @@ class JenisKriteriaController extends Controller
         $request->validate(
             [
                 'kriteria' => 'required',
-                'skor' => 'required|numeric',
                 'kode_kriteria' => 'required',
+                'penilaian' => 'required|numeric',
+                'rating' => 'required|numeric',
             ],
             [
                 'kriteria.required' => 'Tidak boleh kosong',
-                'skor.required' => 'Tidak boleh kosong',
-                'skor.numeric' => 'Tidak boleh huruf',
                 'kode_kriteria.required' => 'Tidak boleh kosong',
+                'penilaian.required' => 'Tidak boleh kosong',
+                'penilaian.numeric' => 'Tidak boleh huruf',
+                'rating.required' => 'Tidak boleh kosong',
+                'rating.numeric' => 'Tidak boleh huruf',
                 // 'geojson.json' => 'Harus format json',
             ]
         );
+
         $data = new JenisKriteria();
 
         $data->kriteria   = $request->kriteria;
-        $data->skor   = $request->skor;
         $data->kode_kriteria   = $request->kode_kriteria;
+        $data->penilaian   = $request->penilaian;
+        $data->rating   = $request->rating;
+        $data->faktor   = $request->faktor;
+        $data->label   = $request->label;
 
         $data->save();
         alert()->success('Berhasil', 'Tambah data berhasil')->autoclose(3000);
@@ -79,21 +86,27 @@ class JenisKriteriaController extends Controller
        $request->validate(
             [
                 'kriteria' => 'required',
-                'skor' => 'required|numeric',
                 'kode_kriteria' => 'required',
+                'penilaian' => 'required|numeric',
+                'rating' => 'required|numeric',
             ],
             [
                 'kriteria.required' => 'Tidak boleh kosong',
-                'skor.required' => 'Tidak boleh kosong',
-                'skor.numeric' => 'Tidak boleh huruf',
                 'kode_kriteria.required' => 'Tidak boleh kosong',
+                'penilaian.required' => 'Tidak boleh kosong',
+                'penilaian.numeric' => 'Tidak boleh huruf',
+                'rating.required' => 'Tidak boleh kosong',
+                'rating.numeric' => 'Tidak boleh huruf',
                 // 'geojson.json' => 'Harus format json',
             ]
         );
         $data = JenisKriteria::find($id);
         $data->kriteria   = $request->kriteria;
-        $data->skor   = $request->skor;
         $data->kode_kriteria   = $request->kode_kriteria;
+        $data->penilaian   = $request->penilaian;
+        $data->rating   = $request->rating;
+        $data->faktor   = $request->faktor;
+        $data->label   = $request->label;
 
         $data->update();
         alert()->success('Berhasil', 'Ubah data berhasil')->autoclose(3000);

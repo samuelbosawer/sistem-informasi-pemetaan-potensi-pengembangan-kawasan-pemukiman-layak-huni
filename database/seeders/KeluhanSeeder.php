@@ -14,15 +14,11 @@ class KeluhanSeeder extends Seeder
      */
     public function run(): void
     {
-        // $table->string('keluhan')->nullable();
-        // $table->date('tanggal')->nullable();
-        // $table->string('foto')->nullable();
-        // $table->bigInteger('user_id')->nullable();
-
         $keluhan = Keluhan::create([
             'keluhan' => 'Tanah Rawa',
             'tanggal' => Carbon::create(2025, 4, 12),
             'foto' => null,
+            'distrik_id' => 1,
             'user_id' => 3
         ]);
 
@@ -31,6 +27,7 @@ class KeluhanSeeder extends Seeder
             'keluhan' => 'Tanah Adat',
             'tanggal' => Carbon::create(2025, 4, 12),
             'foto' => null,
+            'distrik_id' => 1,
             'user_id' => 3
         ]);
 
@@ -40,6 +37,7 @@ class KeluhanSeeder extends Seeder
             'keluhan' => 'Tidak ada pelepasan tanah',
             'tanggal' => Carbon::create(2025, 4, 12),
             'foto' => null,
+            'distrik_id' => 1,
             'user_id' => 3
         ]);
     }

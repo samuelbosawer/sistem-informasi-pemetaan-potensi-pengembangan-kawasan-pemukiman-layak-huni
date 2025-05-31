@@ -190,8 +190,8 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-spacing">
                         <div class="widget widget-t-sales-widget widget-m-sales text-center">
 
-                                    <h2 class="widget-text fw-bolder">PETA</h2>
-
+                                    <h5 class="widget-text text-primary">Pemetaan Potensi Pengembangan Kawasan Pemukiman Layak Huni</h5>
+                                <hr>
                                     <div style="height: 600px; width: 100%;" id="map"></div>
                         </div>
                     </div>
@@ -215,61 +215,79 @@
       <script>
        const map = L.map('map').setView([-2.5744, 140.5178], 10); // Titik tengah: Jayapura
 
-    // Peta dasar: OpenStreetMap
     const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
     });
 
-    // Peta dasar: Satelit dari ESRI
     const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: '&copy; Esri, Maxar, Earthstar Geographics'
     });
 
-    // Tambahkan OSM sebagai default
     osm.addTo(map);
 
-    // Data GeoJSON dari Laravel
     const geojsonData = {!! $geojson !!};
 
-    // Fungsi untuk warna acak
     function getRandomColor() {
         return '#' + Math.floor(Math.random()*16777215).toString(16);
     }
 
-    // Layer distrik per fitur
-    const distrikLayers = {};
+const distrikLayers = {};
 
-    geojsonData.features.forEach(feature => {
-        const color = getRandomColor();
-        const nama = feature.properties.nama_distrik || 'Tanpa Nama';
-        const ket = feature.properties.keterangan || '';
+if (
+    geojsonData &&
+    geojsonData.type === 'FeatureCollection' &&
+    Array.isArray(geojsonData.features) &&
+    geojsonData.features.length > 0
+) {
+    geojsonData.features.forEach((feature, i) => {
+        const geometryStr = JSON.stringify(feature.geometry || {});
+        const nama = feature.properties?.nama_distrik;
 
-        const layer = L.geoJSON(feature, {
-            style: {
-                color: color,
-                weight: 2,
-                fillOpacity: 0.5
-            },
-            onEachFeature: function (feature, layer) {
-                layer.bindPopup(`<strong>${nama}</strong><br>${ket}`);
-            }
-        });
+        if (
+            feature &&
+            feature.type === 'Feature' &&
+            feature.geometry &&
+            geometryStr.length >= 20 &&
+            nama
+        ) {
+            const ket = feature.properties.keterangan || '';
+            const color = getRandomColor();
 
-        distrikLayers[nama] = layer;
-        layer.addTo(map);
+            const layer = L.geoJSON(feature, {
+                style: {
+                    color: color,
+                    weight: 2,
+                    fillOpacity: 0.5
+                },
+                onEachFeature: function (feature, layer) {
+                    layer.bindPopup(`<strong>${nama}</strong><br>${ket}`);
+                }
+            });
+
+            // Tambahkan ke daftar layer
+            distrikLayers[nama] = layer;
+            layer.addTo(map);
+
+            // Debug log
+            console.log("Menambahkan layer:", nama);
+        }
     });
+} else {
+    alert("GeoJSON tidak valid atau kosong.");
+}
 
-    // Base maps
-    const baseMaps = {
-        "OpenStreetMap": osm,
-        "ESRI Satellite": esriSat
-    };
+// Base maps
+const baseMaps = {
+    "OpenStreetMap": osm,
+    "ESRI Satellite": esriSat
+};
 
-    // Layer control di kiri atas
-    L.control.layers(baseMaps, distrikLayers, {
-        collapsed: false,
-        position: 'topleft'
-    }).addTo(map);
+// Layer control di kiri atas
+L.control.layers(baseMaps, distrikLayers, {
+    collapsed: false,
+    position: 'topleft'
+}).addTo(map);
+
 
 </script>
     @endsection

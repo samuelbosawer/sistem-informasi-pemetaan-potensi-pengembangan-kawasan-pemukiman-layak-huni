@@ -31,7 +31,9 @@
 
                                       <div class="d-flex justify-content-between">
                                         <div class="col-6">
-                                            <a href="{{route('dashboard.keluhan.tambah')}}" class="btn btn-primary">   Tambah Data </a>
+                                           @if(Auth::user()->hasRole('investor'))
+                                                <a href="{{route('dashboard.keluhan.tambah')}}" class="btn btn-primary">   Tambah Data </a>
+                                            @endif
                                         </div>
                                         <div class="col-6">
                                            @include('admin.layout.seraching')
@@ -97,7 +99,7 @@
                                                     </tr>
                                                     @empty
                                                     <tr>
-                                                        <td colspan="5" class="text-center">  Data tidak ada</td>
+                                                        <td colspan="6" class="text-center">  Data tidak ada</td>
                                                     </tr>
 
                                                     @endforelse

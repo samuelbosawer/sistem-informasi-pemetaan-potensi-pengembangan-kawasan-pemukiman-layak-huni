@@ -1,6 +1,6 @@
 @extends('admin.layout.tamplate')
 @section('title')
-    Perhitungan Swot - Admin
+    Perhitungan SWOT - Admin
 @endsection
 @section('content')
     <!--  BEGIN CONTENT AREA  -->
@@ -30,9 +30,16 @@
                                             Perhitungan Swot
                                         </h4>
                                     </div>
+                                        <div class="col-6 p-3">
+                                            <a href="{{ route('dashboard.swot') }}?result=hitung" class="btn btn-primary">Hitung SWOT</a>
+                                        </div>
+                                    </div>
+
+
+
                                 </div>
                             </div>
-
+@if(request('result'))
 
                             <div class="widget-content widget-content-area">
 
@@ -230,6 +237,8 @@
         </ul>
     </div>
 </div> --}}
+
+@endif
 
 
 

@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('keluhan')->nullable();
             $table->date('tanggal')->nullable();
             $table->string('foto')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->bigInteger('distrik_id')->nullable();
             $table->bigInteger('user_id')->nullable();
             $table->timestamps();
         });

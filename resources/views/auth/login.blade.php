@@ -98,7 +98,7 @@
 
                                 <div class="col-12">
                                     <div class="text-center">
-                                        <p class="mb-0">Belum Punya Akun ? <a href="/daftar" class="text-warning">Daftar</a></p>
+                                        <p class="mb-0">Belum Punya Akun ? <a href="/daftar" class="text-primary">Daftar</a></p>
                                     </div>
                                 </div>
 

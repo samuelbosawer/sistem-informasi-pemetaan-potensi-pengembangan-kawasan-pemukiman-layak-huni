@@ -37,11 +37,6 @@ class KeluhanController extends Controller
 
     public function store(Request $request)
     {
-      // $table->string('keluhan')->nullable();
-        // $table->date('tanggal')->nullable();
-        // $table->string('foto')->nullable();
-        // $table->bigInteger('')->nullable();
-
         $request->validate(
             [
                 'keluhan' => 'required',

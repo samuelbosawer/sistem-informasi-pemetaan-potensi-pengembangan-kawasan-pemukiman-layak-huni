@@ -50,8 +50,8 @@ class UserSeeder extends Seeder
             'nama' => 'Samuel Septer',
             'alamat' => 'Sentani',
             'no_hp' => '082198159721',
-            'email' => 'samuel#gmail.com',
-            'password' =>  bcrypt('samuel#gmail.com'),
+            'email' => 'samuel@gmail.com',
+            'password' =>  bcrypt('samuel@gmail.com'),
             'jenis_kelamin' => '',
 
         ]);

@@ -40,11 +40,19 @@
                                             enctype="multipart/form-data" class="row g-3">
                                 @endif
                                 @csrf
-                                <div class="col-md-12">
-                                    <label for="nama_distrik" class="form-label">Nama Distrik</label>
+                                <div class="col-md-6">
+                                    <label for="nama_distrik" class="form-label">Nama Distrik <span class="text-danger">*</span></label>
                                     <input type="text" name="nama_distrik" @if (Request::segment(3) == 'detail') disabled @endif  value="{{old('nama_distrik') ?? ($data->nama_distrik ?? '')}}" class="form-control" id="nama_distrik">
                                     @if ($errors->has('nama_distrik'))
                                         <label class="text-danger"> {{ $errors->first('nama_distrik') }}
+                                        </label>
+                                    @endif
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="kode_distrik" class="form-label">Kode Distrik <span class="text-danger">*</span></label>
+                                    <input type="text" name="kode_distrik" @if (Request::segment(3) == 'detail') disabled @endif  value="{{old('kode_distrik') ?? ($data->kode_distrik ?? '')}}" class="form-control" id="nama_distrik">
+                                    @if ($errors->has('kode_distrik'))
+                                        <label class="text-danger"> {{ $errors->first('kode_distrik') }}
                                         </label>
                                     @endif
                                 </div>

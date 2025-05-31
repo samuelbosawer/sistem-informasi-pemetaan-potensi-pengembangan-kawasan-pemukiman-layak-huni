@@ -23,7 +23,7 @@ class DistrikController extends Controller
                         ->get();
                 }
             }]
-        ])->orderBy('kode_distrik', 'asc')->paginate(10);
+        ])->orderBy('id', 'asc')->paginate(10);
         return view('admin.distrik.index',compact('datas'))->with('i',(request()->input('page', 1) - 1) * 10);
     }
 
@@ -39,10 +39,12 @@ class DistrikController extends Controller
         $request->validate(
             [
                 'nama_distrik' => 'required',
+                'kode_distrik' => 'required',
                 'geojson' => 'json',
             ],
             [
                 'nama_distrik.required' => 'Tidak boleh kosong',
+                'kode_distrik.required' => 'Tidak boleh kosong',
                 'geojson.json' => 'Harus format json',
             ]
         );
@@ -50,6 +52,7 @@ class DistrikController extends Controller
 
         $data->nama_distrik   = $request->nama_distrik;
         $data->keterangan   = $request->keterangan;
+        $data->kode_distrik   = $request->kode_distrik;
         $data->geojson   = $request->geojson;
 
         $data->save();
@@ -78,15 +81,18 @@ class DistrikController extends Controller
         $request->validate(
             [
                 'nama_distrik' => 'required',
+                'kode_distrik' => 'required',
                 'geojson' => 'json',
             ],
             [
                 'nama_distrik.required' => 'Tidak boleh kosong',
+                'kode_distrik' => 'required',
                 'geojson.json' => 'Harus format json',
             ]
         );
         $data = Distrik::find($id);
         $data->nama_distrik   = $request->nama_distrik;
+        $data->kode_distrik   = $request->kode_distrik;
         $data->keterangan   = $request->keterangan;
         $data->geojson   = $request->geojson;
 
