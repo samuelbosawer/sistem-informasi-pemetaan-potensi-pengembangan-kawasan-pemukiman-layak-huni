@@ -30,17 +30,17 @@
                                             Perhitungan Swot
                                         </h4>
                                     </div>
-                                        <div class="col-6 p-3">
-                                            <a href="{{ route('dashboard.swot') }}?result=hitung" class="btn btn-primary">Hitung SWOT</a>
-                                        </div>
+                                    <div class="col-6 p-3">
+                                        <a href="{{ route('dashboard.swot') }}?result=hitung" class="btn btn-primary">Hitung
+                                            SWOT</a>
                                     </div>
-
-
-
                                 </div>
-                            </div>
-@if(request('result'))
 
+
+
+                            </div>
+                        </div>
+                        @if (request('result'))
                             <div class="widget-content widget-content-area">
 
                                 <div class="d-flex justify-content-between">
@@ -103,8 +103,8 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="">
+                                <div class="col-md-11 mb-5">
+                                    <div class="table-responsive">
                                         <table class="table table-bordered table-hover table-striped">
                                             <thead>
                                                 <tr class="bg-primary text-white">
@@ -152,13 +152,13 @@
                                 </div>
 
 
-                                <div class="col-md-6">
-                                    <div class="">
+                                <div class="col-md-10">
+                                    <div class="table-responsive">
                                         <table class="table table-bordered table-hover table-striped">
                                             <thead>
                                                 <tr class="bg-primary text-white">
                                                     <th scope="col " width="5" class="text-light fw-bolder">Kode</th>
-                                                    <th scope="col " class="text-light fw-bolder">Faktor Internal</th>
+                                                    <th scope="col " class="text-light fw-bolder">Faktor Eksternal</th>
                                                     <th scope="col " class="text-light fw-bolder">Penilaian</th>
                                                     <th scope="col " class="text-light fw-bolder">Bobot</th>
                                                     <th scope="col " class="text-light fw-bolder">Rating</th>
@@ -183,7 +183,7 @@
                                                     </tr>
                                                 @endforelse
                                                 <tr>
-                                                    <td colspan="2">Jumlah Faktor Internal </td>
+                                                    <td colspan="2">Jumlah Faktor Eksternal </td>
                                                     <td>{{ $totalNilaiB }}</td>
                                                     <td></td>
                                                     <td></td>
@@ -200,53 +200,6 @@
                                     </div>
                                 </div>
 
-{{--
-                                <h3 class="text-xl font-bold mb-2">Hasil Strategi SWOT</h3>
-
-<div class="grid grid-cols-2 gap-4">
-    <div class="p-4 border bg-green-50">
-        <h4 class="font-bold">Strategi SO</h4>
-        <ul class="list-disc pl-4">
-            <li>Manfaatkan akses transportasi dan fasilitas kesehatan untuk mendukung pengembangan ekowisata.</li>
-            <li>Gunakan pendidikan lanjutan untuk pelatihan tenaga kerja pariwisata.</li>
-            <li>Bangun kerjasama untuk pengembangan air bersih dan sanitasi.</li>
-        </ul>
-    </div>
-
-    <div class="p-4 border bg-yellow-50">
-        <h4 class="font-bold">Strategi ST</h4>
-        <ul class="list-disc pl-4">
-            <li>Tingkatkan pendidikan dan infrastruktur untuk hadapi perubahan iklim.</li>
-            <li>Gunakan fasilitas kesehatan untuk mitigasi risiko bencana.</li>
-        </ul>
-    </div>
-
-    <div class="p-4 border bg-blue-50">
-        <h4 class="font-bold">Strategi WO</h4>
-        <ul class="list-disc pl-4">
-            <li>Bangun sarana sosial dari peluang pariwisata.</li>
-            <li>Perbaiki infrastruktur digital dengan proyek pemerintah.</li>
-        </ul>
-    </div>
-
-    <div class="p-4 border bg-red-50">
-        <h4 class="font-bold">Strategi WT</h4>
-        <ul class="list-disc pl-4">
-            <li>Perkuat keamanan untuk menarik investasi.</li>
-            <li>Lakukan edukasi masyarakat untuk mitigasi bencana.</li>
-        </ul>
-    </div>
-</div> --}}
-
-@endif
-
-
-
-
-
-
-
-
 
 
 
@@ -254,12 +207,100 @@
 
 
 
-                        </div>
+
+
+
+
+                            <div class="widget-content widget-content-area mt-5">
+
+                                <div class="d-flex justify-content-between">
+
+                                    <div class="col-6">
+                                        <h3>Hasil Swot</h3>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover table-striped">
+                                            <thead>
+                                                <tr class="bg-primary text-white text-center">
+                                                    <th style="width:10%"></th>
+                                                    <th style="width:45%" class="fw-bolder text-white">Kekuatan (Strength/S)</th>
+                                                    <th style="width:45%" class="fw-bolder text-white">Kelemahan (Weakness/W)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th class="bg-warning text-white text-center align-middle"
+                                                        rowspan="2">
+                                                        Peluang (Opportunity/O)
+                                                    </th>
+                                                    <td>
+                                                        <strong>Strategi SO</strong>
+                                                        <ol type="1">
+                                                            @foreach ($so as $s)
+                                                                <li>{{ $s->keterangan }}</li>
+                                                            @endforeach
+                                                        </ol>
+                                                    </td>
+                                                    <td>
+                                                        <strong>Strategi WO</strong>
+                                                        <ol type="1">
+                                                            @foreach ($wo as $w)
+                                                                <li>{{ $w->keterangan }}</li>
+                                                            @endforeach
+                                                        </ol>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <strong>Strategi ST</strong>
+                                                        <ol type="1">
+                                                            @foreach ($st as $s)
+                                                                <li>{{ $s->keterangan }}</li>
+                                                            @endforeach
+                                                        </ol>
+                                                    </td>
+                                                    <td>
+                                                        <strong>Strategi WT</strong>
+                                                        <ol type="1">
+                                                            @foreach ($wt as $w)
+                                                                <li>{{ $w->keterangan }}</li>
+                                                            @endforeach
+                                                        </ol>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+
+
+
+                            </div>
+                        @endif
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
-
-
                 </div>
-            </div>
 
+
+            </div>
         </div>
+
+
     @endsection

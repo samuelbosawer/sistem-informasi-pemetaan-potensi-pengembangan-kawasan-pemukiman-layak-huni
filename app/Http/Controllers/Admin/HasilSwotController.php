@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\JenisKriteria;
+use App\Models\Strategi;
 use Illuminate\Http\Request;
 
 class HasilSwotController extends Controller
@@ -25,34 +26,63 @@ class HasilSwotController extends Controller
             ->get();
         $totalNilaiB = $nilaiB->sum('penilaian');
 
+ // Ambil data per faktor SWOT
+    $strength = JenisKriteria::where('faktor', 'Strengths')->get();
+    $weakness = JenisKriteria::where('faktor', 'Weaknesses')->get();
+    $opportunity = JenisKriteria::where('faktor', 'Opportunities')->get();
+    $threat = JenisKriteria::where('faktor', 'Threats')->get();
 
 
-        $strength = JenisKriteria::where('faktor', 'Strengths')->get();
-        $weakness = JenisKriteria::where('faktor', 'Weaknesses')->get();
-        $opportunity = JenisKriteria::where('faktor', 'Opportunities')->get();
-        $threat = JenisKriteria::where('faktor', 'Threats')->get();
+    // // Hitung skor total
+    // $sScore = $strength->sum(fn($x) => $x->bobot * $x->rating);
+    // $wScore = $weakness->sum(fn($x) => $x->bobot * $x->rating);
+    // $oScore = $opportunity->sum(fn($x) => $x->bobot * $x->rating);
+    // $tScore = $threat->sum(fn($x) => $x->bobot * $x->rating);
 
-        $sScore = $strength->sum(fn($x) => $x->bobot * $x->rating);
-        $wScore = $weakness->sum(fn($x) => $x->bobot * $x->rating);
-        $oScore = $opportunity->sum(fn($x) => $x->bobot * $x->rating);
-        $tScore = $threat->sum(fn($x) => $x->bobot * $x->rating);
+    // $x = $sScore - $wScore;
+    // $y = $oScore - $tScore;
 
-        $x = $sScore - $wScore;
-        $y = $oScore - $tScore;
+    // // Tentukan tipe strategi berdasarkan hasil perhitungan
+    // if ($x > 0 && $y > 0) {
+    //     $tipe = 'SO';
+    // } elseif ($x > 0 && $y < 0) {
+    //     $tipe = 'ST';
+    // } elseif ($x < 0 && $y > 0) {
+    //     $tipe = 'WO';
+    // } else {
+    //     $tipe = 'WT';
+    // }
 
-        if ($x > 0 && $y > 0) {
-            $strategi = "SO - Agresif";
-        } elseif ($x > 0 && $y < 0) {
-            $strategi = "ST - Diversifikasi";
-        } elseif ($x < 0 && $y > 0) {
-            $strategi = "WO - Turnaround";
-        } else {
-            $strategi = "WT - Defensif";
-        }
+    // Ambil strategi berdasarkan tipe yang dihitung
+    // $strategi = Strategi::where('tipe', $tipe)->pluck('keterangan');
+
+    // // Ambil kode_kriteria berdasarkan tipe
+    // $kodeKriteria = match ($tipe) {
+    //     'SO' => [
+    //         'Strengths' => $strength->pluck('kode_kriteria'),
+    //         'Opportunities' => $opportunity->pluck('kode_kriteria')
+    //     ],
+    //     'ST' => [
+    //         'Strengths' => $strength->pluck('kode_kriteria'),
+    //         'Threats' => $threat->pluck('kode_kriteria')
+    //     ],
+    //     'WO' => [
+    //         'Weaknesses' => $weakness->pluck('kode_kriteria'),
+    //         'Opportunities' => $opportunity->pluck('kode_kriteria')
+    //     ],
+    //     'WT' => [
+    //         'Weaknesses' => $weakness->pluck('kode_kriteria'),
+    //         'Threats' => $threat->pluck('kode_kriteria')
+    //     ],
+    // };
 
 
+    $so = Strategi::where('tipe','SO')->get();
+    $wo = Strategi::where('tipe','WO')->get();
+    $st = Strategi::where('tipe','ST')->get();
+    $wt = Strategi::where('tipe','WT')->get();
 
-        return view('admin.swot.index', compact('datas', 'nilaiA', 'nilaiB','totalNilaiA','totalNilaiB'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('admin.swot.index', compact('datas', 'nilaiA', 'nilaiB','totalNilaiA','totalNilaiB','so','wo','st','wt'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     public function create() {

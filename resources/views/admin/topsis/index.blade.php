@@ -31,14 +31,16 @@
                                         </h4>
                                     </div>
 
-                                        <div class="">
+                                    <div class="">
                                         <div class="col-6">
-                                             <a href="{{route('dashboard.topsis.tambah')}}" class="btn btn-primary">   Tambah Data Topsis </a>
-                                             <a href="{{ route('dashboard.topsis') }}?result=hitung#hitung" class="btn btn-primary">Hitung Topsis</a>
+                                            <a href="{{ route('dashboard.topsis.tambah') }}" class="btn btn-primary"> Tambah
+                                                Data Topsis </a>
+                                            <a href="{{ route('dashboard.topsis') }}?result=hitung#hitung"
+                                                class="btn btn-primary">Hitung Topsis</a>
                                         </div>
                                         <div class="col-6">
-                                       </div>
-                                      </div>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
@@ -71,7 +73,9 @@
                                                 <tr>
                                                     <td> {{ $kriteria }}</td>
                                                     @foreach ($distriks as $distrik)
-                                                        <td> <a href="{{route('dashboard.topsis.ubah',$topsisIds[$kriteria][$distrik] ?? '#') }}">   {{ $matrix[$kriteria][$distrik] ?? '' }}   </a>  </td>
+                                                        <td> <a
+                                                                href="{{ route('dashboard.topsis.ubah', $topsisIds[$kriteria][$distrik] ?? '#') }}">
+                                                                {{ $matrix[$kriteria][$distrik] ?? '' }} </a> </td>
                                                     @endforeach
                                                     <td>{{ $scores[$kriteria] ?? '-' }}</td>
                                                     <td> {{ $labels[$kriteria] ?? '-' }} </td>
@@ -97,145 +101,161 @@
 
                             </div>
 
-                            @if(request('result'))
+                            @if (request('result'))
+                                <div id="" class="mt-5">
+                                    <div class="widget-content widget-content-area">
+                                        <div id="hitung">
+                                            <h1 class="">Hasil Perhitungan</h1>
+                                        </div>
+                                        <h3>Matriks Keputusan Ternormalisasi</h3>
 
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover table-striped">
+                                                <thead>
+                                                    <tr class="bg-primary text-white">
+                                                        <th scope="col" width="5" class="text-light fw-bolder">
+                                                            Kriteria</th>
+                                                        @foreach ($distriks as $distrik)
+                                                            <th scope="col" class="text-light fw-bolder">
+                                                                {{ $distrik }}</th>
+                                                        @endforeach
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @forelse ($kriterias as $kriteria)
+                                                        <tr>
+                                                            <td>{{ $kriteria }}</td>
+                                                            @foreach ($distriks as $distrik)
+                                                                <td>{{ $normal[$kriteria][$distrik] ?? '-' }}</td>
+                                                            @endforeach
+                                                        </tr>
+                                                    @empty
+                                                        <tr>
+                                                            <td colspan="{{ count($distriks) + 1 }}" class="text-center">
+                                                                Data tidak
+                                                                ada</td>
+                                                        </tr>
+                                                    @endforelse
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
 
-                            <div id="" class="mt-5">
-                                 <div class="widget-content widget-content-area">
-                                      <div id="hitung">
-                                <h1 class="">Hasil Perhitungan</h1>
-                            </div>
-                                <h3>Matriks Keputusan Ternormalisasi</h3>
+                                    <div class="widget-content widget-content-area mt-4">
+                                        <h3>Matriks Keputusan Ternormalisasi Terbobot</h3>
 
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr class="bg-primary text-white">
-                                                <th scope="col" width="5" class="text-light fw-bolder">Kriteria</th>
-                                                @foreach ($distriks as $distrik)
-                                                    <th scope="col" class="text-light fw-bolder">{{ $distrik }}</th>
-                                                @endforeach
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @forelse ($kriterias as $kriteria)
-                                                <tr>
-                                                    <td>{{ $kriteria }}</td>
-                                                    @foreach ($distriks as $distrik)
-                                                        <td>{{ $normal[$kriteria][$distrik] ?? '-' }}</td>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover table-striped">
+                                                <thead>
+                                                    <tr class="bg-primary text-white">
+                                                        <th class="text-white">Kriteria</th>
+                                                        @foreach ($distriks as $distrik)
+                                                            <th class="text-white">{{ $distrik }}</th>
+                                                        @endforeach
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($kriterias as $kriteria)
+                                                        <tr>
+                                                            <td>{{ $kriteria }}</td>
+                                                            @foreach ($distriks as $distrik)
+                                                                <td>{{ $weighted[$kriteria][$distrik] ?? '-' }}</td>
+                                                            @endforeach
+                                                        </tr>
                                                     @endforeach
-                                                </tr>
-                                            @empty
-                                                <tr>
-                                                    <td colspan="{{ count($distriks) + 1 }}" class="text-center">Data tidak
-                                                        ada</td>
-                                                </tr>
-                                            @endforelse
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
 
-                            <div class="widget-content widget-content-area mt-4">
-                                <h3>Matriks Keputusan Ternormalisasi Terbobot</h3>
-
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr class="bg-primary text-white">
-                                                <th class="text-white">Kriteria</th>
-                                                @foreach ($distriks as $distrik)
-                                                    <th class="text-white">{{ $distrik }}</th>
-                                                @endforeach
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($kriterias as $kriteria)
-                                                <tr>
-                                                    <td>{{ $kriteria }}</td>
-                                                    @foreach ($distriks as $distrik)
-                                                        <td>{{ $weighted[$kriteria][$distrik] ?? '-' }}</td>
+                                    <div class="widget-content widget-content-area">
+                                        <h3>Solusi Ideal Positif (A⁺) & Negatif (A⁻)</h3>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover table-striped">
+                                                <thead>
+                                                    <tr class="bg-primary text-white">
+                                                        <th class="text-white">Kriteria</th>
+                                                        <th class="text-white">A⁺ (Ideal Positif)</th>
+                                                        <th class="text-white">A⁻ (Ideal Negatif)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($kriterias as $kriteria)
+                                                        <tr>
+                                                            <td>{{ $kriteria }}</td>
+                                                            <td>{{ $idealPositive[$kriteria] ?? '-' }}</td>
+                                                            <td>{{ $idealNegative[$kriteria] ?? '-' }}</td>
+                                                        </tr>
                                                     @endforeach
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
 
-                            <div class="widget-content widget-content-area">
-                                <h3>Solusi Ideal Positif (A⁺) & Negatif (A⁻)</h3>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr class="bg-primary text-white">
-                                                <th class="text-white">Kriteria</th>
-                                                <th class="text-white">A⁺ (Ideal Positif)</th>
-                                                <th class="text-white">A⁻ (Ideal Negatif)</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($kriterias as $kriteria)
-                                                <tr>
-                                                    <td>{{ $kriteria }}</td>
-                                                    <td>{{ $idealPositive[$kriteria] ?? '-' }}</td>
-                                                    <td>{{ $idealNegative[$kriteria] ?? '-' }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                                    <div class="widget-content widget-content-area">
+                                        <h3>Jarak ke Solusi Ideal Positif (D⁺) dan Negatif (D⁻)</h3>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover table-striped">
+                                                <thead>
+                                                    <tr class="bg-primary text-white">
+                                                        <th class="text-white">Distrik</th>
+                                                        <th class="text-white">D⁺</th>
+                                                        <th class="text-white">D⁻</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($distriks as $distrik)
+                                                        <tr>
+                                                            <td>{{ $distrik }}</td>
+                                                            <td>{{ $jarakIdealPositif[$distrik] ?? '-' }}</td>
+                                                            <td>{{ $jarakIdealNegatif[$distrik] ?? '-' }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="widget-content widget-content-area">
+                                        <h3>Preferensi dan Ranking Akhir</h3>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover table-striped">
+                                                <thead>
+                                                    <tr class="bg-success text-white">
+                                                        <th class=" text-white">Peringkat</th>
+                                                        <th class=" text-white">Kode Distrik</th>
+                                                        <th class=" text-white">Nilai Preferensi</th>
+                                                        <th class=" text-white">Strategi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($hasilGabungan as $index => $item)
+                                                        <tr>
+                                                            <td>{{ $index + 1 }}</td>
+                                                            <td>{{ $item['distrik'] }}</td>
+                                                            <td>{{ $item['nilai'] }}</td>
+                                                            <td>
 
-                            <div class="widget-content widget-content-area">
-                                <h3>Jarak ke Solusi Ideal Positif (D⁺) dan Negatif (D⁻)</h3>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr class="bg-primary text-white">
-                                                <th class="text-white">Distrik</th>
-                                                <th class="text-white">D⁺</th>
-                                                <th class="text-white">D⁻</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($distriks as $distrik)
-                                                <tr>
-                                                    <td>{{ $distrik }}</td>
-                                                    <td>{{ $jarakIdealPositif[$distrik] ?? '-' }}</td>
-                                                    <td>{{ $jarakIdealNegatif[$distrik] ?? '-' }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="widget-content widget-content-area">
-                                <h3>Preferensi dan Ranking Akhir</h3>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr class="bg-success text-white">
-                                                <th class=" text-white">Peringkat</th>
-                                                <th class=" text-white">Distrik</th>
-                                                <th class=" text-white">Nilai Preferensi (V)</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($ranking as $index => $item)
-                                                <tr>
-                                                    <td>{{ $index + 1 }}</td>
-                                                    <td>{{ $item['distrik'] }}</td>
-                                                    <td>{{ $item['nilai'] }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            </div>
+                                                                @if (!empty($item['strategi']))
+                                                                    <ul>
+                                                                        @foreach ($item['strategi'] as $s)
+                                                                            <li><strong> Strategi
+                                                                                    {{ $s['tipe'] }}</strong><br><small>{{ $s['keterangan'] }}</small>
+                                                                            </li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                @else
+                                                                    <em>-</em>
+                                                                @endif
 
 
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             @endif
 
 
@@ -250,5 +270,4 @@
             </div>
         </div>
 
-    </div>
-@endsection
+    @endsection

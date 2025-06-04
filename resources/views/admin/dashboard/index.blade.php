@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="media-body">
                                     <p class="widget-text">Distrik</p>
-                                    <p class="widget-numeric-value">3</p>
+                                    <p class="widget-numeric-value">{{$distrik}}</p>
                                 </div>
                             </div>
                             <div class="d-flex w-bottom text-center">
@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="media-body">
                                     <p class="widget-text">Jenis Kriteria</p>
-                                    <p class="widget-numeric-value">3</p>
+                                       <p class="widget-numeric-value">{{$kriteria}}</p>
                                 </div>
                             </div>
                             <div class="d-flex w-bottom text-center">
@@ -107,44 +107,6 @@
                     </div>
 
 
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 layout-spacing">
-                        <div class="widget widget-t-sales-widget widget-m-sales">
-                            <div class="media">
-                                <div class="icon ml-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                </div>
-                                <div class="media-body">
-                                    <p class="widget-text">Kriteria</p>
-                                    <p class="widget-numeric-value">3</p>
-                                </div>
-                            </div>
-                            <div class="d-flex w-bottom text-center">
-                                <p class="widget-total-stats"></p>
-                                <div class="task-action">
-                                    <div class="dropdown">
-                                        <a class="dropdown-toggle" href="#" role="button" id="statistics"
-                                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="feather feather-more-horizontal">
-                                            <circle cx="12" cy="12" r="1"></circle>
-                                            <circle cx="19" cy="12" r="1"></circle>
-                                            <circle cx="5" cy="12" r="1"></circle>
-                                </svg>
-                                        </a>
-
-                                        <div class="dropdown-menu left" aria-labelledby="statistics"
-                                            style="will-change: transform;">
-                                            <a class="dropdown-item" href="{{route('dashboard.kriteria')}}">Lihat Data</a>
-                                            <a class="dropdown-item" href="{{route('dashboard.kriteria.tambah')}}">Tambah Data</a>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
 
                     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 layout-spacing">
@@ -155,7 +117,7 @@
                                 </div>
                                 <div class="media-body">
                                     <p class="widget-text">Keluhan</p>
-                                    <p class="widget-numeric-value">3</p>
+                                    <p class="widget-numeric-value"> {{$keluhan}}</p>
                                 </div>
                             </div>
                             <div class="d-flex w-bottom text-center">
@@ -177,8 +139,6 @@
                                         <div class="dropdown-menu left" aria-labelledby="statistics"
                                             style="will-change: transform;">
                                             <a class="dropdown-item" href="{{route('dashboard.keluhan')}}">Lihat Data</a>
-                                            <a class="dropdown-item" href="{{route('dashboard.keluhan.tambah')}}">Tambah Data</a>
-
                                         </div>
                                     </div>
                                 </div>

@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kriterias', function (Blueprint $table) {
+        Schema::create('strategis', function (Blueprint $table) {
             $table->id();
-
+            $table->string('tipe')->nullable();
+            $table->text('keterangan')->nullable();
+            // $table->bigInteger('jenis_kriteria_id')->nullable();
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kriterias');
+        Schema::dropIfExists('strategis');
     }
 };

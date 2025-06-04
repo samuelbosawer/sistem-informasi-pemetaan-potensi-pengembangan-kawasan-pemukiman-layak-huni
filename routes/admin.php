@@ -16,5 +16,7 @@ Route::group(['middleware' => ['auth']], function () {
         require_once 'admin/swot.php';
         require_once 'admin/wilayah.php';
         require_once 'admin/topsis.php';
+        require_once 'admin/strategi.php';
+        require_once 'admin/peringkat.php';
  });
 });

@@ -10,4 +10,9 @@ class Keluhan extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+     public function distrik()
+    {
+        return $this->belongsTo(User::class, 'distrik_id');
+    }
 }

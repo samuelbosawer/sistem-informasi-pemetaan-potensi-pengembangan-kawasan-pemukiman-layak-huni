@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Distrik;
 use App\Models\JenisKriteria;
+use App\Models\Peringkat;
 use App\Models\Topsis;
 use Illuminate\Http\Request;
 
@@ -138,19 +139,56 @@ class TopsisController extends Controller
             $jarakIdealNegatif[$distrik] = round(sqrt($sumNegatif), 3);
         }
 
-        $preferensi = [];
-        foreach ($distriks as $distrik) {
-            $dPlus = $jarakIdealPositif[$distrik] ?? 0;
-            $dMinus = $jarakIdealNegatif[$distrik] ?? 0;
-            $preferensi[$distrik] = ($dPlus + $dMinus) > 0
-                ? round($dMinus / ($dPlus + $dMinus), 4)
-                : 0;
-        }
+// 1. Hitung preferensi dan ranking TOPSIS
+$preferensi = [];
+foreach ($distriks as $distrik) {
+    $dPlus = $jarakIdealPositif[$distrik] ?? 0;
+    $dMinus = $jarakIdealNegatif[$distrik] ?? 0;
+    $preferensi[$distrik] = ($dPlus + $dMinus) > 0
+        ? round($dMinus / ($dPlus + $dMinus), 4)
+        : 0;
+}
 
-        // Urutkan untuk perankingan
-        $ranking = collect($preferensi)->sortDesc()->map(function ($value, $key) {
-            return ['distrik' => $key, 'nilai' => $value];
-        })->values()->all();
+// 2. Buat ranking dari hasil preferensi
+$ranking = collect($preferensi)
+    ->sortDesc()
+    ->map(function ($value, $key) {
+        return ['distrik' => $key, 'nilai' => $value];
+    })
+    ->values()
+    ->all();
+
+// 3. Ambil semua strategi (tipe: SO, ST, WO, WT) dan group berdasarkan peringkat
+$strategiByPeringkat = Peringkat::get()
+    ->groupBy('peringkat');
+
+// 4. Gabungkan ranking + strategi (dengan keterangan)
+$hasilGabungan = collect($ranking)->map(function ($item, $index) use ($strategiByPeringkat) {
+    $peringkat = $index + 1;
+    $strategiList = $strategiByPeringkat[$peringkat] ?? collect();
+    $tipe = $strategiByPeringkat[$peringkat] ?? collect();
+
+   $strategiListFormatted = $strategiList->map(function ($item) {
+    return [
+        'tipe'       => $item->tipe,
+        'keterangan' => $item->keterangan,
+    ];
+})->values()->all();
+
+    return [
+        'distrik'   => $item['distrik'],
+        'nilai'     => $item['nilai'],
+        'peringkat' => $peringkat,
+        'strategi'  => $strategiListFormatted, // tipe => array of strategi + keterangan
+    ];
+});
+
+
+
+
+// dd($hasilGabungan);
+
+
 
 
         return view('admin.topsis.index', compact(
@@ -168,7 +206,8 @@ class TopsisController extends Controller
             'jarakIdealNegatif',
             'preferensi',
             'ranking',
-            'topsisIds'
+            'topsisIds',
+            'hasilGabungan'
 
 
         ));

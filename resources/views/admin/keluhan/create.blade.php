@@ -95,12 +95,15 @@
 
                                 <div class="col-md-6">
                                     @if (Request::segment(3) == 'detail')
-
-                                    <a href="{{route('dashboard.keluhan.ubah',$data->id)}}" class="btn btn-primary"> Ubah Data</a>
+                                         @if(Auth::user()->hasRole('investor'))
+                                            <a href="{{route('dashboard.keluhan.ubah',$data->id)}}" class="btn btn-primary"> Ubah Data</a>
+                                        @endif
                                     <a href="{{route('dashboard.keluhan')}}" class="btn btn-success"> Kembali</a>
                                     @else
 
-                                    <button class="btn btn-primary">Simpan </button>
+                                        @if(Auth::user()->hasRole('investor'))
+                                            <button class="btn btn-primary">Simpan </button>
+                                        @endif
 
                                     @endif
 
