@@ -107,46 +107,73 @@ class TopsisController extends Controller
             }
         }
 
+$idealPositive = [];
+$idealNegative = [];
 
-        $idealPositive = [];
-        $idealNegative = [];
+foreach ($kriterias as $kriteria) {
+    $values = collect($distriks)->map(fn($d) => $weighted[$kriteria][$d] ?? 0);
 
-        foreach ($kriterias as $kriteria) {
-            $values = collect($distriks)->map(fn($d) => $weighted[$kriteria][$d] ?? 0);
-
-            $idealPositive[$kriteria] = $values->max();
-            $idealNegative[$kriteria] = $values->min();
-        }
+    $tipe = $jenisKriteria[$kriteria]->label; // Contoh: ['C1' => 'BENEFIT', 'C2' => 'COST']
 
 
-        $jarakIdealPositif = [];
-        $jarakIdealNegatif = [];
+    if ($tipe === 'Cost') {
+        $idealPositive[$kriteria] = $values->min();
+        $idealNegative[$kriteria] = $values->max();
+    } else {
+         $idealPositive[$kriteria] = $values->max();
+        $idealNegative[$kriteria] = $values->min();
 
-        foreach ($distriks as $distrik) {
-            $sumPositif = 0;
-            $sumNegatif = 0;
+    }
+}
 
-            foreach ($kriterias as $kriteria) {
-                $value = $weighted[$kriteria][$distrik] ?? 0;
-                $aPlus = $idealPositive[$kriteria] ?? 0;
-                $aMinus = $idealNegative[$kriteria] ?? 0;
+$jarakIdealPositif = [];
+$jarakIdealNegatif = [];
 
-                $sumPositif += pow($value - $aPlus, 2);
-                $sumNegatif += pow($value - $aMinus, 2);
-            }
+foreach ($distriks as $distrik) {
+    $sumPositif = 0;
+    $sumNegatif = 0;
 
-            $jarakIdealPositif[$distrik] = round(sqrt($sumPositif), 3);
-            $jarakIdealNegatif[$distrik] = round(sqrt($sumNegatif), 3);
-        }
+    foreach ($kriterias as $kriteria) {
+        // Nilai terbobot v_ij
+        $value = $weighted[$kriteria][$distrik] ?? 0;
+
+
+        // Solusi ideal positif dan negatif
+        $aPlus = $idealPositive[$kriteria] ?? 0;
+        $aMinus = $idealNegative[$kriteria] ?? 0;
+
+
+
+
+        // Hitung selisih kuadrat untuk D+ dan D-
+        $sumPositif += pow($value - $aPlus, 2);
+        $sumNegatif += pow($value - $aMinus, 2);
+
+
+
+    }
+
+    // Akar dari total selisih kuadrat
+    $jarakIdealPositif[$distrik] = round(sqrt($sumPositif), 3);
+    $jarakIdealNegatif[$distrik] = round(sqrt($sumNegatif), 3);
+
+
+}
 
 // 1. Hitung preferensi dan ranking TOPSIS
 $preferensi = [];
+
 foreach ($distriks as $distrik) {
     $dPlus = $jarakIdealPositif[$distrik] ?? 0;
     $dMinus = $jarakIdealNegatif[$distrik] ?? 0;
-    $preferensi[$distrik] = ($dPlus + $dMinus) > 0
-        ? round($dMinus / ($dPlus + $dMinus), 4)
-        : 0;
+
+    // Cek apakah pembagi tidak nol untuk menghindari pembagian 0/0
+    if (($dPlus + $dMinus) != 0) {
+        $preferensi[$distrik] = round($dMinus / ($dPlus + $dMinus), 4);
+    } else {
+        // Jika jarak total 0 (tidak normal), nilai preferensi dianggap 0
+        $preferensi[$distrik] = 0;
+    }
 }
 
 // 2. Buat ranking dari hasil preferensi
@@ -158,30 +185,30 @@ $ranking = collect($preferensi)
     ->values()
     ->all();
 
-// 3. Ambil semua strategi (tipe: SO, ST, WO, WT) dan group berdasarkan peringkat
-$strategiByPeringkat = Peringkat::get()
-    ->groupBy('peringkat');
+// // 3. Ambil semua strategi (tipe: SO, ST, WO, WT) dan group berdasarkan peringkat
+// $strategiByPeringkat = Peringkat::get()
+//     ->groupBy('peringkat');
 
-// 4. Gabungkan ranking + strategi (dengan keterangan)
-$hasilGabungan = collect($ranking)->map(function ($item, $index) use ($strategiByPeringkat) {
-    $peringkat = $index + 1;
-    $strategiList = $strategiByPeringkat[$peringkat] ?? collect();
-    $tipe = $strategiByPeringkat[$peringkat] ?? collect();
+// // 4. Gabungkan ranking + strategi (dengan keterangan)
+// $hasilGabungan = collect($ranking)->map(function ($item, $index) use ($strategiByPeringkat) {
+//     $peringkat = $index + 1;
+//     $strategiList = $strategiByPeringkat[$peringkat] ?? collect();
+//     $tipe = $strategiByPeringkat[$peringkat] ?? collect();
 
-   $strategiListFormatted = $strategiList->map(function ($item) {
-    return [
-        'tipe'       => $item->tipe,
-        'keterangan' => $item->keterangan,
-    ];
-})->values()->all();
+//    $strategiListFormatted = $strategiList->map(function ($item) {
+//     return [
+//         'tipe'       => $item->tipe,
+//         'keterangan' => $item->keterangan,
+//     ];
+// })->values()->all();
 
-    return [
-        'distrik'   => $item['distrik'],
-        'nilai'     => $item['nilai'],
-        'peringkat' => $peringkat,
-        'strategi'  => $strategiListFormatted, // tipe => array of strategi + keterangan
-    ];
-});
+//     return [
+//         'distrik'   => $item['distrik'],
+//         'nilai'     => $item['nilai'],
+//         'peringkat' => $peringkat,
+//         'strategi'  => $strategiListFormatted, // tipe => array of strategi + keterangan
+//     ];
+// });
 
 
 
@@ -207,7 +234,7 @@ $hasilGabungan = collect($ranking)->map(function ($item, $index) use ($strategiB
             'preferensi',
             'ranking',
             'topsisIds',
-            'hasilGabungan'
+            // 'hasilGabungan'
 
 
         ));

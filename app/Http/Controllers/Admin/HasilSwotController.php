@@ -77,10 +77,11 @@ class HasilSwotController extends Controller
     // };
 
 
-    $so = Strategi::where('tipe','SO')->get();
-    $wo = Strategi::where('tipe','WO')->get();
-    $st = Strategi::where('tipe','ST')->get();
-    $wt = Strategi::where('tipe','WT')->get();
+    $so = Strategi::where('tipe', 'SO')->get()->unique(fn($s) => $s->satu_id . '-' . $s->dua_id . '-' . $s->tiga_id . '-' . $s->empat_id);
+    $wo = Strategi::where('tipe', 'WO')->get()->unique(fn($s) => $s->satu_id . '-' . $s->dua_id . '-' . $s->tiga_id . '-' . $s->empat_id);
+    $st = Strategi::where('tipe', 'ST')->get()->unique(fn($s) => $s->satu_id . '-' . $s->dua_id . '-' . $s->tiga_id . '-' . $s->empat_id);
+    $wt = Strategi::where('tipe', 'WT')->get()->unique(fn($s) => $s->satu_id . '-' . $s->dua_id . '-' . $s->tiga_id . '-' . $s->empat_id);
+
 
         return view('admin.swot.index', compact('datas', 'nilaiA', 'nilaiB','totalNilaiA','totalNilaiB','so','wo','st','wt'))->with('i', (request()->input('page', 1) - 1) * 10);
     }

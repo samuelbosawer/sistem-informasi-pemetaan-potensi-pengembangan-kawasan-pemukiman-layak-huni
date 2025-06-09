@@ -216,7 +216,7 @@
                                 <div class="d-flex justify-content-between">
 
                                     <div class="col-6">
-                                        <h3>Hasil Swot</h3>
+                                        <h3>Rekomendasi Swot</h3>
                                     </div>
                                 </div>
 
@@ -239,8 +239,23 @@
                                                     <td>
                                                         <strong>Strategi SO</strong>
                                                         <ol type="1">
-                                                            @foreach ($so as $s)
-                                                                <li>{{ $s->keterangan }}</li>
+                                                            {{-- @dd($so) --}}
+                                                           @foreach ($so as $s)
+                                                                @if (!empty($s->satu->kriteria))
+                                                                    <li>{{ $s->satu->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($s->dua->kriteria))
+                                                                    <li>{{ $s->dua->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($s->tiga->kriteria))
+                                                                    <li>{{ $s->tiga->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($s->empat->kriteria))
+                                                                    <li>{{ $s->empat->kriteria }}</li>
+                                                                @endif
                                                             @endforeach
                                                         </ol>
                                                     </td>
@@ -248,7 +263,21 @@
                                                         <strong>Strategi WO</strong>
                                                         <ol type="1">
                                                             @foreach ($wo as $w)
-                                                                <li>{{ $w->keterangan }}</li>
+                                                                @if (!empty($w->satu->kriteria))
+                                                                    <li>{{ $w->satu->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($w->dua->kriteria))
+                                                                    <li>{{ $w->dua->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($w->tiga->kriteria))
+                                                                    <li>{{ $w->tiga->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($w->empat->kriteria))
+                                                                    <li>{{ $w->empat->kriteria }}</li>
+                                                                @endif
                                                             @endforeach
                                                         </ol>
                                                     </td>
@@ -258,7 +287,21 @@
                                                         <strong>Strategi ST</strong>
                                                         <ol type="1">
                                                             @foreach ($st as $s)
-                                                                <li>{{ $s->keterangan }}</li>
+                                                                 @if (!empty($s->satu->kriteria))
+                                                                    <li>{{ $s->satu->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($s->dua->kriteria))
+                                                                    <li>{{ $s->dua->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($s->tiga->kriteria))
+                                                                    <li>{{ $s->tiga->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($s->empat->kriteria))
+                                                                    <li>{{ $s->empat->kriteria }}</li>
+                                                                @endif
                                                             @endforeach
                                                         </ol>
                                                     </td>
@@ -266,7 +309,21 @@
                                                         <strong>Strategi WT</strong>
                                                         <ol type="1">
                                                             @foreach ($wt as $w)
-                                                                <li>{{ $w->keterangan }}</li>
+                                                               @if (!empty($w->satu->kriteria))
+                                                                    <li>{{ $w->satu->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($w->dua->kriteria))
+                                                                    <li>{{ $w->dua->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($w->tiga->kriteria))
+                                                                    <li>{{ $w->tiga->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($w->empat->kriteria))
+                                                                    <li>{{ $w->empat->kriteria }}</li>
+                                                                @endif
                                                             @endforeach
                                                         </ol>
                                                     </td>

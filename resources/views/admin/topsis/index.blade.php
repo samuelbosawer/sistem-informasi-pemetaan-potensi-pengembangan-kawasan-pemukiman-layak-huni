@@ -224,31 +224,14 @@
                                                         <th class=" text-white">Peringkat</th>
                                                         <th class=" text-white">Kode Distrik</th>
                                                         <th class=" text-white">Nilai Preferensi</th>
-                                                        <th class=" text-white">Strategi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($hasilGabungan as $index => $item)
+                                                    @foreach ($ranking as $index => $item)
                                                         <tr>
                                                             <td>{{ $index + 1 }}</td>
                                                             <td>{{ $item['distrik'] }}</td>
                                                             <td>{{ $item['nilai'] }}</td>
-                                                            <td>
-
-                                                                @if (!empty($item['strategi']))
-                                                                    <ul>
-                                                                        @foreach ($item['strategi'] as $s)
-                                                                            <li><strong> Strategi
-                                                                                    {{ $s['tipe'] }}</strong><br><small>{{ $s['keterangan'] }}</small>
-                                                                            </li>
-                                                                        @endforeach
-                                                                    </ul>
-                                                                @else
-                                                                    <em>-</em>
-                                                                @endif
-
-
-                                                            </td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>

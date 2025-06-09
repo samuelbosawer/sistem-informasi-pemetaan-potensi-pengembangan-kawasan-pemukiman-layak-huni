@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('strategis', function (Blueprint $table) {
             $table->id();
             $table->string('tipe')->nullable();
-            $table->text('keterangan')->nullable();
+            $table->string('strategi_satu')->nullable();
+            $table->string('strategi_dua')->nullable();
+            $table->string('strategi_tiga')->nullable();
+            $table->string('strategi_empat')->nullable();
             // $table->bigInteger('jenis_kriteria_id')->nullable();
             $table->timestamps();
         });

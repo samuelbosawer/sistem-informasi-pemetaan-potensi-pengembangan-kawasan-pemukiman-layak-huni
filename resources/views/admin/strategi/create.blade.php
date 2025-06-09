@@ -68,12 +68,142 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-md-8">
-                                    <label for="keterangan" class="form-label">Keterangan</label>
-                                    <textarea name="keterangan" @if (Request::segment(3) == 'detail') disabled @endif class="form-control" id="keterangan"
-                                        cols="30" rows="10">{{ old('keterangan') ?? ($data->keterangan ?? '') }}</textarea>
 
+                                <div class="col-md-8">
+                                    <div class="form-group mb-3">
+                                        <label for="strategi_satu"> Strategi Satu
+                                        </label>
+
+                                        <select class="form-control" aria-label="Default select example"
+                                            name="strategi_satu"
+                                            @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif>
+                                            <option value="">Tidak Ada</option>
+                                            @foreach ($kriteria as $k)
+                                                <option value="{{ $k->id }}"
+                                                    {{ (old('strategi_satu') ?? ($data->strategi_satu ?? '')) == $k->id ? 'selected' : '' }}>
+
+                                                    {{ $k->kode_kriteria . '-' . $k->kriteria }}</option>
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->has('strategi_satu'))
+                                            <label class="text-danger">
+                                                {{ $errors->first('strategi_satu') }}
+                                            </label>
+                                        @endif
+                                    </div>
                                 </div>
+
+                                <div class="col-md-8">
+                                    <div class="form-group mb-3">
+                                        <label for="strategi_dua"> Strategi Dua
+                                        </label>
+
+                                        <select class="form-control" aria-label="Default select example"
+                                            name="strategi_dua"
+                                            @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif>
+                                            <option value="">Tidak Ada</option>
+                                            @foreach ($kriteria as $k)
+                                                <option value="{{ $k->id }}"
+                                                    {{ (old('strategi_dua') ?? ($data->strategi_dua ?? '')) == $k->id ? 'selected' : '' }}>
+
+                                                    {{ $k->kode_kriteria . '-' . $k->kriteria }}</option>
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->has('strategi_dua'))
+                                            <label class="text-danger">
+                                                {{ $errors->first('strategi_dua') }}
+                                            </label>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                  <div class="col-md-8">
+                                    <div class="form-group mb-3">
+                                        <label for="strategi_tiga"> Strategi Tiga
+                                        </label>
+
+                                        <select class="form-control" aria-label="Default select example"
+                                            name="strategi_tiga"
+                                            @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif>
+                                            <option value="">Tidak Ada</option>
+                                            @foreach ($kriteria as $k)
+                                                <option value="{{ $k->id }}"
+                                                    {{ (old('strategi_tiga') ?? ($data->strategi_tiga ?? '')) == $k->id ? 'selected' : '' }}>
+
+                                                    {{ $k->kode_kriteria . '-' . $k->kriteria }}</option>
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->has('strategi_tiga'))
+                                            <label class="text-danger">
+                                                {{ $errors->first('strategi_tiga') }}
+                                            </label>
+                                        @endif
+                                    </div>
+                                </div>
+
+
+
+                                  <div class="col-md-8">
+                                    <div class="form-group mb-3">
+                                        <label for="strategi_empat"> Strategi Empat
+                                        </label>
+
+                                        <select class="form-control" aria-label="Default select example"
+                                            name="strategi_empat"
+                                            @if (Request::segment(3) == 'detail') {{ 'disabled' }} @endif>
+                                            <option value="">Tidak Ada</option>
+                                            @foreach ($kriteria as $k)
+                                                <option value="{{ $k->id }}"
+                                                    {{ (old('strategi_empat') ?? ($data->strategi_empat ?? '')) == $k->id ? 'selected' : '' }}>
+
+                                                    {{ $k->kode_kriteria . '-' . $k->kriteria }}</option>
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->has('strategi_empat'))
+                                            <label class="text-danger">
+                                                {{ $errors->first('strategi_empat') }}
+                                            </label>
+                                        @endif
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+                                 {{-- <div class="col-md-6">
+                                    <div class="form-check">
+                                            @foreach ($kriteria as $k )
+                                                @php
+                                                    $checkboxId = 'strategi_' . ($k->kode_kriteria ?? $loop->index);
+                                                @endphp
+                                                <input class="form-check-input"
+                                                    type="checkbox"
+                                                    value="{{ $k->kode_kriteria ?? '' }}"
+                                                    name="strategi[]"
+                                                    id="{{ $checkboxId }}">
+                                                <label class="form-check-label"
+                                                    for="{{ $checkboxId }}">
+                                                    {{ $k->kriteria }} ({{ $k->kode_kriteria }})
+                                                </label>
+                                                <br>
+                                            @endforeach
+                                            @if ($errors->has('strategi'))
+                                            <label class="text-danger"> {{ $errors->first('strategi') }}
+                                            </label>
+                                        @endif
+                                    </div>
+
+                                </div> --}}
+
+
+
+
 
 
 
