@@ -13,16 +13,21 @@ class KeluhanController extends Controller
 {
     public function index(Request $request)
     {
-        $datas = Keluhan::where([
-            ['keluhan', '!=', Null],
-            [function ($query) use ($request) {
-                if (($s = $request->s)) {
-                    $query->orWhere('keluhan', 'LIKE', '%' . $s . '%')
-                    ->orWhere('tanggal', 'LIKE', '%' . $s . '%')
-                        ->get();
-                }
-            }]
-        ])->orderBy('id', 'desc')->paginate(10);
+      $datas = Keluhan::with('distrik')->whereNotNull('keluhan')
+    ->where(function ($query) use ($request) {
+        if ($s = $request->s) {
+            $query->where('keluhan', 'LIKE', '%' . $s . '%')
+                ->orWhere('tanggal', 'LIKE', '%' . $s . '%')
+                ->orWhere('latitude', 'LIKE', '%' . $s . '%')
+                ->orWhere('longitude', 'LIKE', '%' . $s . '%')
+                ->orWhereHas('distrik', function ($q) use ($s) {
+                    $q->where('nama_distrik', 'LIKE', '%' . $s . '%');
+                });
+        }
+    })
+    // pastikan relasi juga ikut di-load
+    ->orderBy('id', 'desc')
+    ->paginate(10);
         return view('admin.keluhan.index',compact('datas'))->with('i',(request()->input('page', 1) - 1) * 10);
 
     }

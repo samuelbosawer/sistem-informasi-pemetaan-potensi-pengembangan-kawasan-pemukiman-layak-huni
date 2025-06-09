@@ -48,8 +48,11 @@
                                                         <th scope="col " width="5" class="text-light fw-bolder">No</th>
                                                         <th scope="col " class="text-light fw-bolder">Keluhan</th>
                                                         <th scope="col " class="text-light fw-bolder">Tanggal</th>
+                                                        <th scope="col " class="text-light fw-bolder">Distrik</th>
                                                         <th scope="col " class="text-light fw-bolder">Foto</th>
+                                                        @if(!Auth::user()->hasRole('investor'))
                                                         <th scope="col " class="text-light fw-bolder">Pelapor</th>
+                                                        @endif
                                                         <th></th>
                                                     </tr>
                                                 </thead>
