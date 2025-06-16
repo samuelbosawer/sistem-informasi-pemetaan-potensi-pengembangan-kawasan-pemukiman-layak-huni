@@ -8,6 +8,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Dashboard
         Route::get('/', [DashboardController::class, 'index'])->name('home');
+        Route::get('/peta/{id}/detail', [DashboardController::class, 'distrik'])->name('distrik.detail');
 
         require_once 'admin/distrik.php';
         require_once 'admin/jenisKriteria.php';

@@ -18,7 +18,10 @@ class KeluhanSeeder extends Seeder
             'keluhan' => 'Tanah Rawa',
             'tanggal' => Carbon::create(2025, 4, 12),
             'foto' => null,
-            'distrik_id' => 1,
+            'latitude' => -3.139209,
+            'longitude' => 139.948453,
+            'status' => 'Publish',
+            'distrik_id' => 11,
             'user_id' => 3
         ]);
 
@@ -27,7 +30,10 @@ class KeluhanSeeder extends Seeder
             'keluhan' => 'Tanah Adat',
             'tanggal' => Carbon::create(2025, 4, 12),
             'foto' => null,
-            'distrik_id' => 1,
+            'latitude' => -3.209611,
+            'longitude' =>  139.965873,
+            'status' => 'Publish',
+            'distrik_id' => 11,
             'user_id' => 3
         ]);
 
@@ -37,7 +43,10 @@ class KeluhanSeeder extends Seeder
             'keluhan' => 'Tidak ada pelepasan tanah',
             'tanggal' => Carbon::create(2025, 4, 12),
             'foto' => null,
-            'distrik_id' => 1,
+            'latitude' => -3.209459,
+            'longitude' => 139.961211,
+            'status' => 'Publish',
+            'distrik_id' => 11,
             'user_id' => 3
         ]);
     }

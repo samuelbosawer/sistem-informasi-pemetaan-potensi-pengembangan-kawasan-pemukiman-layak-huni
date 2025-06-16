@@ -85,10 +85,10 @@
 
 
 
-                          <li class="menu @if (Request::segment(2) == 'strategi' || Request::segment(3) == 'strategi') active @endif">
+                         <li class="menu @if (Request::segment(2) == 'strategi' || Request::segment(3) == 'strategi') active @endif">
                              <a href="{{ route('dashboard.strategi') }}" aria-expanded="false" class="dropdown-toggle">
                                  <div class="">
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                          stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
                                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
@@ -152,8 +152,9 @@
                          </li>
 
 
-                                <li class="menu @if (Request::segment(2) == 'rekomendasi' || Request::segment(3) == 'rekomendasi') active @endif">
-                             <a href="{{ route('dashboard.rekomendasi') }}" aria-expanded="false" class="dropdown-toggle">
+                         <li class="menu @if (Request::segment(2) == 'rekomendasi' || Request::segment(3) == 'rekomendasi') active @endif">
+                             <a href="{{ route('dashboard.rekomendasi') }}" aria-expanded="false"
+                                 class="dropdown-toggle">
                                  <div class="">
                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -230,6 +231,78 @@
                                          </rect>
                                      </svg>
                                      <span> Keluhan </span>
+                                 </div>
+                             </a>
+                         </li>
+
+
+                         <li class="menu @if (Request::segment(2) == 'rekomendasi' || Request::segment(3) == 'rekomendasi') active @endif">
+                             <a href="{{ route('dashboard.rekomendasi') }}" aria-expanded="false"
+                                 class="dropdown-toggle">
+                                 <div class="">
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                         stroke-linecap="round" stroke-linejoin="round"
+                                         class="feather feather-clipboard">
+                                         <path
+                                             d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2">
+                                         </path>
+                                         <rect x="8" y="2" width="8" height="4" rx="1"
+                                             ry="1">
+                                         </rect>
+                                     </svg>
+                                     <span> Rekomendasi </span>
+                                 </div>
+                             </a>
+                         </li>
+                     @endif
+                     @if (Auth::user()->hasRole('kepalaBidang'))
+                         <li class="menu menu-heading">
+                             <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                     height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                     class="feather feather-minus">
+                                     <line x1="5" y1="12" x2="19" y2="12"></line>
+                                 </svg><span>Laporan</span></div>
+                         </li>
+
+                         <li class="menu @if (Request::segment(2) == 'keluhan' || Request::segment(3) == 'keluhan') active @endif">
+                             <a href="{{ route('dashboard.keluhan') }}" aria-expanded="false"
+                                 class="dropdown-toggle">
+                                 <div class="">
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                         stroke-linecap="round" stroke-linejoin="round"
+                                         class="feather feather-clipboard">
+                                         <path
+                                             d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2">
+                                         </path>
+                                         <rect x="8" y="2" width="8" height="4" rx="1"
+                                             ry="1">
+                                         </rect>
+                                     </svg>
+                                     <span> Keluhan </span>
+                                 </div>
+                             </a>
+                         </li>
+
+
+                         <li class="menu @if (Request::segment(2) == 'rekomendasi' || Request::segment(3) == 'rekomendasi') active @endif">
+                             <a href="{{ route('dashboard.rekomendasi') }}" aria-expanded="false"
+                                 class="dropdown-toggle">
+                                 <div class="">
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                         stroke-linecap="round" stroke-linejoin="round"
+                                         class="feather feather-clipboard">
+                                         <path
+                                             d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2">
+                                         </path>
+                                         <rect x="8" y="2" width="8" height="4" rx="1"
+                                             ry="1">
+                                         </rect>
+                                     </svg>
+                                     <span> Rekomendasi </span>
                                  </div>
                              </a>
                          </li>

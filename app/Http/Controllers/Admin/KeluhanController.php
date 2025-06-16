@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Distrik;
 use App\Models\Keluhan;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,31 +14,32 @@ class KeluhanController extends Controller
 {
     public function index(Request $request)
     {
-      $datas = Keluhan::with('distrik')->whereNotNull('keluhan')
-    ->where(function ($query) use ($request) {
-        if ($s = $request->s) {
-            $query->where('keluhan', 'LIKE', '%' . $s . '%')
-                ->orWhere('tanggal', 'LIKE', '%' . $s . '%')
-                ->orWhere('latitude', 'LIKE', '%' . $s . '%')
-                ->orWhere('longitude', 'LIKE', '%' . $s . '%')
-                ->orWhereHas('distrik', function ($q) use ($s) {
-                    $q->where('nama_distrik', 'LIKE', '%' . $s . '%');
-                });
-        }
-    })
-    // pastikan relasi juga ikut di-load
-    ->orderBy('id', 'desc')
-    ->paginate(10);
-        return view('admin.keluhan.index',compact('datas'))->with('i',(request()->input('page', 1) - 1) * 10);
+    $query = Keluhan::with('distrik')
+    ->whereNotNull('keluhan');
 
+        if (Auth::user()->hasRole('investor')) {
+            $query->where('user_id', Auth::user()->id);
+        }
+
+        if ($s = $request->s) {
+            $query->where(function ($q) use ($s) {
+                $q->where('keluhan', 'LIKE', '%' . $s . '%')
+                    ->orWhere('tanggal', 'LIKE', '%' . $s . '%')
+                    ->orWhereHas('distrik', function ($q2) use ($s) {
+                        $q2->where('nama_distrik', 'LIKE', '%' . $s . '%');
+                    });
+            });
+        }
+
+        $datas = $query->orderBy('id', 'desc')->paginate(10);
+        return view('admin.keluhan.index',compact('datas'))->with('i',(request()->input('page', 1) - 1) * 10);
     }
 
     public function create()
     {
-        $users = User::whereHas('roles', function ($query) {
-            $query->where('name', 'investor');
-        })->get();
-        return view('admin.keluhan.create',compact('users'));
+
+        $distriks = Distrik::get();
+        return view('admin.keluhan.create',compact('distriks'));
     }
 
     public function store(Request $request)
@@ -57,7 +59,11 @@ class KeluhanController extends Controller
 
         $data->keluhan   = $request->keluhan;
         $data->tanggal   = $request->tanggal;
-        $data->user_id   = $request->user_id;
+        $data->latitude   = $request->latitude;
+        $data->longitude   = $request->longitude;
+        $data->user_id   = Auth::user()->id;
+        $data->distrik_id   = $request->distrik_id;
+        $data->status   = 'Draft';
 
         if (isset($request->foto)) {
             $fileName = $request->foto->getClientOriginalName();
@@ -79,24 +85,20 @@ class KeluhanController extends Controller
     public function show(string $id)
     {
 
-        $users = User::whereHas('roles', function ($query) {
-            $query->where('name', 'investor');
-        })->get();
         $data = Keluhan::where('id',$id)->first();
         $judul = 'Detail Data Keluhan';
-        return view('admin.keluhan.create',compact('users','data','judul'));
+        $distriks = Distrik::get();
+        return view('admin.keluhan.create',compact('data','judul','distriks'));
 
     }
 
 
     public function edit(string $id)
     {
-        $users = User::whereHas('roles', function ($query) {
-            $query->where('name', 'investor');
-        })->get();
         $data = Keluhan::where('id',$id)->first();
         $judul = 'Ubah Data Keluhan';
-        return view('admin.keluhan.create',compact('users','data','judul'));
+        $distriks = Distrik::get();
+        return view('admin.keluhan.create',compact('data','judul','distriks'));
     }
 
     public function update(Request $request, string $id)
@@ -116,7 +118,11 @@ class KeluhanController extends Controller
 
         $data->keluhan   = $request->keluhan;
         $data->tanggal   = $request->tanggal;
-        $data->user_id   = $request->user_id;
+        $data->latitude   = $request->latitude;
+        $data->longitude   = $request->longitude;
+        $data->user_id   = Auth::user()->id;
+        $data->distrik_id   = $request->distrik_id;
+        $data->status   = 'Draft';
 
         if (isset($request->foto)) {
             $fileName = $request->foto->getClientOriginalName();

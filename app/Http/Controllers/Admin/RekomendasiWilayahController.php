@@ -155,43 +155,42 @@ foreach ($distriks as $distrik) {
 $ranking = collect($preferensi)
     ->sortDesc()
     ->map(function ($value, $kodeDistrik) use ($distrikList, $rekomendasi) {
-        // Ambil semua rekomendasi untuk distrik terkait
-        $rekoms = $rekomendasi->filter(fn($r) => optional($r->distrik)->kode_distrik === $kodeDistrik);
+        // Ambil semua rekomendasi yang sesuai dengan kode distrik
+        $rekoms = $rekomendasi->where('kode_distrik', $kodeDistrik);
 
+        // Kategorisasi strategi per tipe
         $tipeStrategi = [];
         $rekomendasiIds = [];
 
         foreach ($rekoms as $rekom) {
-            $tipe = optional($rekom->strategi)->tipe ?? 'Tidak Diketahui';
+            $tipe = $rekom->strategi->tipe ?? 'Tidak Diketahui';
             $rekomendasiIds[] = $rekom->id;
 
             $strategiList = collect([
-                $rekom->strategi->satu?->kriteria,
-                $rekom->strategi->dua?->kriteria,
-                $rekom->strategi->tiga?->kriteria,
-                $rekom->strategi->empat?->kriteria,
+                optional($rekom->strategi->satu)->kriteria,
+                optional($rekom->strategi->dua)->kriteria,
+                optional($rekom->strategi->tiga)->kriteria,
+                optional($rekom->strategi->empat)->kriteria,
             ])->filter()->unique()->values()->all();
 
-            if (!isset($tipeStrategi[$tipe])) {
-                $tipeStrategi[$tipe] = [];
-            }
-
-            // Gabungkan strategi per tipe
-            $tipeStrategi[$tipe] = array_unique(array_merge($tipeStrategi[$tipe], $strategiList));
+            $tipeStrategi[$tipe] = array_unique(array_merge($tipeStrategi[$tipe] ?? [], $strategiList));
         }
+
+        // Ambil data distrik lengkap dengan geojson
+        $distrik = Distrik::where('kode_distrik', $kodeDistrik)->first();
 
         return [
             'kode_distrik' => $kodeDistrik,
-            'nama_distrik' => $distrikList[$kodeDistrik] ?? 'Tidak Diketahui',
+            'nama_distrik' => $distrik?->nama_distrik ?? 'Tidak Diketahui',
             'nilai' => $value,
-            'strategi_bertipe' => $tipeStrategi, // SO, WO, ST, WT
-            'rekomendasi_ids' => array_unique($rekomendasiIds), // id-id rekomendasi terkait distrik
+            'strategi_bertipe' => $tipeStrategi,
+            'rekomendasi_ids' => array_unique($rekomendasiIds),
+            'geojson' => $distrik?->geojson ?? null,
         ];
     })
     ->values()
     ->all();
 
-    // dd($ranking);
 
         return view('admin.rwilayah.index',compact('ranking'));
 

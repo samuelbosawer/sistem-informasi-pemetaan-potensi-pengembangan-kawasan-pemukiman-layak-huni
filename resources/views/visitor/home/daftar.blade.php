@@ -151,7 +151,7 @@
 
                                 <div class="col-12">
                                     <div class="text-center">
-                                        <p class="mb-0">Sudah Punya Akun ? <a href="/login" class="text-warning">Login</a></p>
+                                        <p class="mb-0">Sudah Punya Akun ? <a href="/login" class="text-primary">Login</a></p>
                                     </div>
                                 </div>
 

@@ -48,7 +48,7 @@
                                 <div class="col-md-12 mb-3 text-center">
 
                                     <h2 class="fw-bolder text-primary">Login</h2>
-                                    <p>Masukkan email dan kata sandi Anda untuk dapat login</p>
+                                    <p>Masukan email dan kata sandi Anda untuk dapat login</p>
 
                                 </div>
                                 <div class="col-md-12">

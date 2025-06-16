@@ -32,9 +32,13 @@
                             <div class="widget-content widget-content-area">
                                 <div class="d-flex justify-content-between">
                                     <div class="col-6 mb-3">
+
+                                          @if (Auth::user()->hasRole('admin'))
                                         <a href="{{ route('dashboard.rekomendasi.tambah') }}" class="btn btn-primary">
                                             Tambah
                                             Rekomendasi </a>
+
+                                            @endif
                                     </div>
                                     <div class="col-6">
                                         {{-- @include('admin.layout.seraching') --}}
@@ -75,6 +79,7 @@
                 @endphp
 
                 @foreach ($idRekom as $id)
+                                          @if (Auth::user()->hasRole('admin'))
 
                     <form action="{{ route('dashboard.rekomendasi.hapus', $id) }}" method="POST" style="display:inline;">
                         @csrf @method('DELETE')
@@ -82,7 +87,9 @@
                             onclick="return confirm('Yakin ingin menghapus rekomendasi tipe {{ $tipe }} untuk distrik {{ $item['nama_distrik'] }}?')">
                             Hapus {{ $tipe }}
                         </button>
-                    </form>    <br>
+                    </form>
+                    @endif
+                    <br>
                 @endforeach
             @endforeach
         </td>

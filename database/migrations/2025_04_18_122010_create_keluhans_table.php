@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('foto')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
+            $table->string('status')->nullable();
             $table->bigInteger('distrik_id')->nullable();
             $table->bigInteger('user_id')->nullable();
             $table->timestamps();

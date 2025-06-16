@@ -215,9 +215,6 @@ $ranking = collect($preferensi)
 
 // dd($hasilGabungan);
 
-
-
-
         return view('admin.topsis.index', compact(
             'kriterias',
             'distriks',
