@@ -1,6 +1,6 @@
   <!--Navbar Start-->
   @if (Request::segment(1) == null)
-        <nav class="navbar navbar-expand-lg fixed-top sticky custom-nav">
+        <nav class="navbar navbar-expand-lg fixed-top sticky custom-nav" style="">
  @else
        <nav class="navbar navbar-expand-lg fixed-top sticky bg-light p-3 shadow">
   @endif

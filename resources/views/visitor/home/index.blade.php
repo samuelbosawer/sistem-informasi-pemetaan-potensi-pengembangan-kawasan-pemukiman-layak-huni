@@ -49,7 +49,7 @@
     </section>
     <div class="row ">
         <div class="col-lg-12">
-            <div style="height: 600px; width: 100%;" id="map"></div>
+            <div id="map" style="height: 600px; width: 100%; z-index: 0;"></div>
         </div>
     </div>
     <!--End Home-->
