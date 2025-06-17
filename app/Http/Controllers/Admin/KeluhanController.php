@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class KeluhanController extends Controller
 {
@@ -33,6 +34,38 @@ class KeluhanController extends Controller
 
         $datas = $query->orderBy('id', 'desc')->paginate(10);
         return view('admin.keluhan.index',compact('datas'))->with('i',(request()->input('page', 1) - 1) * 10);
+    }
+
+    public function pdf(Request $request)
+    {
+
+         $query = Keluhan::with('distrik')
+        ->whereNotNull('keluhan');
+
+        if (Auth::user()->hasRole('investor')) {
+            $query->where('user_id', Auth::user()->id);
+        }
+
+        if ($s = $request->s) {
+            $query->where(function ($q) use ($s) {
+                $q->where('keluhan', 'LIKE', '%' . $s . '%')
+                    ->orWhere('tanggal', 'LIKE', '%' . $s . '%')
+                    ->orWhereHas('distrik', function ($q2) use ($s) {
+                        $q2->where('nama_distrik', 'LIKE', '%' . $s . '%');
+                    });
+            });
+        }
+
+        $datas = $query->orderBy('id', 'desc')->get();
+
+        $title = 'Laporan Keluhan';
+
+        $data = ['title' => $title,
+                    'datas' => $datas
+                ];
+        $pdf = Pdf::loadView('admin.keluhan.pdf', $data);
+        return $pdf->stream('laporan-keluhan.pdf');
+
     }
 
     public function create()

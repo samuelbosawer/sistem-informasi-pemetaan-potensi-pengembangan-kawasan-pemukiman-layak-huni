@@ -43,10 +43,9 @@
                         </div>
                         <div class="mt-2">
                             <p class="mb-0 fw-bold">Email</p>
-                            <p class="text-secondary">@gmail.com</p>
+                            <p class="text-secondary">sip4lh@gmail.com</p>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="col-md-4">
@@ -59,9 +58,7 @@
                             <p class="text-secondary">Gunung Merah Sentani</p>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </section>

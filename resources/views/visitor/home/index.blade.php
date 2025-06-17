@@ -138,12 +138,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center">
-                        <h3 class="mb-0 text-capitalize"> <span class="fw-bold">Tentang</span></h3>
-                        <div class="main-title-border bg-primary mx-auto"></div>
-                        <p class="text-secondary mx-auto mt-2">Secara singkat, sistem ini merupakan alat bantu digital
-                            berbasis peta interaktif yang dirancang untuk memetakan potensi wilayah, menganalisis
-                            kondisi kawasan, dan memberikan rekomendasi pengembangan pemukiman layak huni di Kabupaten
-                            Jayapura.</p>
+
                     </div>
                 </div>
             </div>
@@ -259,7 +254,7 @@
                         </div>
                         <div class="mt-2">
                             <p class="mb-0 fw-bold">Email</p>
-                            <p class="text-secondary">@gmail.com</p>
+                            <p class="text-secondary">sip4lh@gmail.com</p>
                         </div>
                     </div>
 

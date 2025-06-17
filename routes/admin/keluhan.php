@@ -13,5 +13,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('keluhan/store', [KeluhanController::class, 'store'])->name('keluhan.store');
         Route::get('keluhan/{id}/ubah', [KeluhanController::class, 'edit'])->name('keluhan.ubah');
         Route::put('keluhan/{id}', [KeluhanController::class, 'update'])->name('keluhan.update');
+
+        Route::get('keluhan/pdf', [KeluhanController::class, 'pdf'])->name('keluhan.pdf');
     });
 });

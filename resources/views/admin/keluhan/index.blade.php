@@ -34,6 +34,10 @@
                                            @if(Auth::user()->hasRole('investor'))
                                                 <a href="{{route('dashboard.keluhan.tambah')}}" class="btn btn-primary">   Tambah Data </a>
                                             @endif
+                                            @if(Auth::user()->hasRole('kepalaBidang'))
+                                                <a target="_blank" href="{{route('dashboard.keluhan.pdf')}}" class="btn btn-danger">   Export PDF </a>
+                                            @endif
+
                                         </div>
                                         <div class="col-6">
                                            @include('admin.layout.seraching')

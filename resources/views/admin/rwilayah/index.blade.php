@@ -33,11 +33,13 @@
                                 <div class="d-flex justify-content-between">
                                     <div class="col-6 mb-3">
 
-                                          @if (Auth::user()->hasRole('admin'))
-                                        <a href="{{ route('dashboard.rekomendasi.tambah') }}" class="btn btn-primary">
-                                            Tambah
-                                            Rekomendasi </a>
-
+                                        @if (Auth::user()->hasRole('admin'))
+                                            <a href="{{ route('dashboard.rekomendasi.tambah') }}" class="btn btn-primary">
+                                                Tambah
+                                                Rekomendasi </a>
+                                        @endif
+                                             @if(Auth::user()->hasRole('kepalaBidang'))
+                                                <a target="_blank" href="{{route('dashboard.rekomendasi.pdf')}}" class="btn btn-danger">   Export PDF </a>
                                             @endif
                                     </div>
                                     <div class="col-6">
@@ -57,44 +59,54 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                         @foreach ($ranking as $item)
-    <tr>
-        <td>{{ $loop->iteration }}</td>
-        <td>{{ $item['nama_distrik'] }}</td>
-        <td>{{ $item['nilai'] }}</td>
-        <td>
-            @foreach ($item['strategi_bertipe'] as $tipe => $strategis)
-                <strong>{{ $tipe }}</strong>
-                <ul>
-                    @foreach ($strategis as $strat)
-                        <li>{{ $strat }}</li>
-                    @endforeach
-                </ul>
+                                            @foreach ($ranking as $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item['nama_distrik'] }}</td>
+                                                    <td>{{ $item['nilai'] }}</td>
+                                                    <td>
+                                                        @foreach ($item['strategi_bertipe'] as $tipe => $strategis)
+                                                            <strong>{{ $tipe }}</strong>
+                                                            <ul>
+                                                                @foreach ($strategis as $strat)
+                                                                    <li>{{ $strat }}</li>
+                                                                @endforeach
+                                                            </ul>
 
-                {{-- Tombol hapus rekomendasi berdasarkan tipe --}}
-                @php
-                    $idRekom = \App\Models\Rekomendasi::whereHas('distrik', fn($q) => $q->where('kode_distrik', $item['kode_distrik']))
-                        ->whereHas('strategi', fn($q) => $q->where('tipe', $tipe))
-                        ->pluck('id');
-                @endphp
+                                                            {{-- Tombol hapus rekomendasi berdasarkan tipe --}}
+                                                            @php
+                                                                $idRekom = \App\Models\Rekomendasi::whereHas(
+                                                                    'distrik',
+                                                                    fn($q) => $q->where(
+                                                                        'kode_distrik',
+                                                                        $item['kode_distrik'],
+                                                                    ),
+                                                                )
+                                                                    ->whereHas(
+                                                                        'strategi',
+                                                                        fn($q) => $q->where('tipe', $tipe),
+                                                                    )
+                                                                    ->pluck('id');
+                                                            @endphp
 
-                @foreach ($idRekom as $id)
-                                          @if (Auth::user()->hasRole('admin'))
-
-                    <form action="{{ route('dashboard.rekomendasi.hapus', $id) }}" method="POST" style="display:inline;">
-                        @csrf @method('DELETE')
-                        <button class="btn btn-sm btn-danger"
-                            onclick="return confirm('Yakin ingin menghapus rekomendasi tipe {{ $tipe }} untuk distrik {{ $item['nama_distrik'] }}?')">
-                            Hapus {{ $tipe }}
-                        </button>
-                    </form>
-                    @endif
-                    <br>
-                @endforeach
-            @endforeach
-        </td>
-    </tr>
-@endforeach
+                                                            @foreach ($idRekom as $id)
+                                                                @if (Auth::user()->hasRole('admin'))
+                                                                    <form
+                                                                        action="{{ route('dashboard.rekomendasi.hapus', $id) }}"
+                                                                        method="POST" style="display:inline;">
+                                                                        @csrf @method('DELETE')
+                                                                        <button class="btn btn-sm btn-danger"
+                                                                            onclick="return confirm('Yakin ingin menghapus rekomendasi tipe {{ $tipe }} untuk distrik {{ $item['nama_distrik'] }}?')">
+                                                                            Hapus {{ $tipe }}
+                                                                        </button>
+                                                                    </form>
+                                                                @endif
+                                                                <br>
+                                                            @endforeach
+                                                        @endforeach
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

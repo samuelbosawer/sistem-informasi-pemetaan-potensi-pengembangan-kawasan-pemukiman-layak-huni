@@ -13,5 +13,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('rekomendasi/store', [RekomendasiWilayahController::class, 'store'])->name('rekomendasi.store');
         Route::get('rekomendasi/{id}/ubah', [RekomendasiWilayahController::class, 'edit'])->name('rekomendasi.ubah');
         Route::put('rekomendasi/{id}', [RekomendasiWilayahController::class, 'update'])->name('rekomendasi.update');
+
+
+        Route::get('rekomendasi/pdf', [RekomendasiWilayahController::class, 'pdf'])->name('rekomendasi.pdf');
+
     });
 });
