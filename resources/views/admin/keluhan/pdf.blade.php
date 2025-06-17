@@ -77,7 +77,7 @@
 
                                 <td>
                                     @if ($data->foto != null)
-                                        <img src="{{ asset($data->foto) }}" width="100" class="rounded"
+                                        <img src="{{ public_path($data->foto) }}" width="100" class="rounded"
                                             alt="" srcset="">
                                     @else
                                         -
