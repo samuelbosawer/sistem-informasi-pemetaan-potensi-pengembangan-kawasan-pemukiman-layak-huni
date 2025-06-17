@@ -73,7 +73,7 @@
                                     {{ \Carbon\Carbon::parse($data->tanggal)->locale('id')->translatedFormat('l, d F Y H:i') }}
                                 </td>
                                 <td>{{ $data->keluhan }}</td>
-                                <td>DIstrik</td>
+                                       <td> {{$data->distrik->nama_distrik ?? '-'}}  </td>
 
                                 <td>
                                     @if ($data->foto != null)
