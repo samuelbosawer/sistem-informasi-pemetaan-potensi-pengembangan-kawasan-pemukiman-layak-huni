@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\JenisKriteriaController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
     Route::controller(JenisKriteriaController::class)->group(function(){
         Route::get('jenis-kriteria', [JenisKriteriaController::class, 'index'])->name('jenis-kriteria');

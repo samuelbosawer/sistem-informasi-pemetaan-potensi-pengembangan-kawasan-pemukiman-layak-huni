@@ -63,7 +63,7 @@
                                                             @endphp
 
                                                             @foreach ($idRekom as $id)
-                                                                @if (Auth::user()->hasRole('admin'))
+                                                                @if (Auth::check() && Auth::user()->hasRole('admin'))
                                                                     <form
                                                                         action="{{ route('dashboard.rekomendasi.hapus', $id) }}"
                                                                         method="POST" style="display:inline;">

@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\StrategiController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
     Route::controller(StrategiController::class)->group(function(){
         Route::get('strategi', [StrategiController::class, 'index'])->name('strategi');

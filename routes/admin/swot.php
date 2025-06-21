@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\HasilSwotController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
     Route::controller(HasilSwotController::class)->group(function(){
         Route::get('swot', [HasilSwotController::class, 'index'])->name('swot');

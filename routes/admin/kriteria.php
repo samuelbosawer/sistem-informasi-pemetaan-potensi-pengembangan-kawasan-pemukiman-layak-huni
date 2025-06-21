@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\KriteriaController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
     Route::controller(KriteriaController::class)->group(function(){
         Route::get('kriteria', [KriteriaController::class, 'index'])->name('kriteria');

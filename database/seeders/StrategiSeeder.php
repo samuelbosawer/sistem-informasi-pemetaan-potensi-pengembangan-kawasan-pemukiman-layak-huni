@@ -13,110 +13,144 @@ class StrategiSeeder extends Seeder
      */
     public function run(): void
     {
-        // $strategies = [
-        //     [
-        //         'tipe' => 'SO',
-        //         'keterangan' => 'Memanfaatkan infrastruktur transportasi yang baik untuk mendukung pengembangan ekowisata dan potensi wisata alam.',
-        //         // 'strategi_id' => [1, 2, 18, 19]
-        //     ],
-
-        //     [
-        //         'tipe' => 'SO',
-        //         'keterangan' => 'Menggunakan pusat pendidikan lanjutan untuk meningkatkan kapasitas SDM yang mendukung pertumbuhan ekonomi lokal.',
-        //         // 'strategi_id' => [1, 2, 18, 19]
-        //     ],
-
-        //     [
-        //         'tipe' => 'SO',
-        //         'keterangan' => 'Mengoptimalkan perbaikan sistem sanitasi dan peningkatan akses air bersih untuk meningkatkan kualitas hidup.',
-        //         // 'strategi_id' => [1, 2, 18, 19]
-        //     ],
-
-        //     [
-        //         'tipe' => 'WO',
-        //         'keterangan' => 'Mengatasi keterbatasan lahan melalui kebijakan tata ruang yang efisien dan berkelanjutan.',
-        //         // 'strategi_id' => [8]
-        //     ],
-
-
-        //     [
-        //         'tipe' => 'WO',
-        //         'keterangan' => 'Meningkatkan kualitas infrastruktur dengan dukungan dari pertumbuhan ekonomi lokal dan pengembangan jaringan listrik.',
-        //         // 'strategi_id' => [8]
-        //     ],
-
-
-        //     [
-        //         'tipe' => 'WO',
-        //         'keterangan' => 'Mengembangkan fasilitas sosial dan rekreasi untuk meningkatkan kesejahteraan masyarakat.',
-        //         // 'strategi_id' => [8]
-        //     ],
-
-
-        //     [
-        //         'tipe' => 'ST',
-        //         'keterangan' => 'Membangun sistem mitigasi bencana untuk mengatasi risiko banjir, gempa bumi, dan longsor.',
-        //         // 'strategi_id' => [21, 22, 23]
-        //     ],
-
-        //     [
-        //         'tipe' => 'ST',
-        //         'keterangan' => 'Meningkatkan kesadaran masyarakat terhadap dampak perubahan iklim dan pentingnya menjaga lingkungan.',
-        //         // 'strategi_id' => [21, 22, 23]
-        //     ],
-
-
-        //     [
-        //         'tipe' => 'ST',
-        //         'keterangan' => 'Memanfaatkan transportasi umum yang baik untuk evakuasi cepat saat terjadi bencana',
-        //         // 'strategi_id' => [21, 22, 23]
-        //     ],
-
-
-
-
-        //     [
-        //         'tipe' => 'WT',
-        //         'keterangan' => 'Meningkatkan kapasitas sarana kesehatan untuk menghadapi risiko bencana.',
-        //         // 'strategi_id' => [6, 12]
-        //     ],
-
-
-        //      [
-        //         'tipe' => 'WT',
-        //         'keterangan' => 'Mengembangkan infrastruktur digital untuk mendukung ketahanan ekonomi dan sosial masyarakat.',
-        //         // 'strategi_id' => [6, 12]
-        //     ],
-
-
-        //      [
-        //         'tipe' => 'WT',
-        //         'keterangan' => 'Melakukan kerja sama dengan pihak swasta untuk mengatasi keterbatasan lahan dan meningkatkan kualitas infrastruktur.',
-        //         // 'strategi_id' => [6, 12]
-        //     ],
-        // ];
 
 
          $strategies = [
-            [
-                'tipe' => 'WT',
-                'strategi_satu' => '1',
-                'strategi_dua' => '4'
-            ],
 
-
-             [
-                'tipe' => 'WT',
-                'strategi_satu' => '2',
-                'strategi_dua' => '4'
-            ],
-
+            // Strategi dari peringkat 1 - 4
 
              [
                 'tipe' => 'SO',
-                'strategi_satu' => '1',
-                'strategi_dua' => '4'
+                'strategi_satu' => '6',
+                'strategi_dua' => '7',
+                'strategi_tiga' => '17',
+                'strategi_empat' => '15',
             ],
+
+
+            // Strategi dari peringkat 5
+            //    S5, S4, S3, O3
+            [
+                'tipe' => 'SO',
+                'strategi_satu' => '5',
+                'strategi_dua' => '4',
+                'strategi_tiga' => '3',
+                'strategi_empat' => '17',
+            ],
+
+            // Strategi dari peringkat 6
+            //    S5, S4, S3, O3
+            [
+                'tipe' => 'SO',
+                'strategi_satu' => '6',
+                'strategi_dua' => '7',
+                'strategi_tiga' => null,
+                'strategi_empat' => null,
+            ],
+
+
+            // Strategi dari peringkat 7 -8, 10
+            [
+                'tipe' => 'SO',
+                'strategi_satu' => '2',
+                'strategi_dua' => '25',
+                'strategi_tiga' => null,
+                'strategi_empat' => null,
+            ],
+
+          // Strategi dari peringkat 9
+             [
+                'tipe' => 'SO',
+                'strategi_satu' => '1',
+                'strategi_dua' => '21',
+                'strategi_tiga' => '22',
+                'strategi_empat' => '23',
+            ],
+
+
+             // Strategi dari peringkat 11, 15
+            //  W1, W4, O4
+             [
+                'tipe' => 'SO',
+                'strategi_satu' => '8',
+                'strategi_dua' => '11',
+                'strategi_tiga' => '18',
+                'strategi_empat' => null ,
+            ],
+
+
+            // Strategi dari peringkat 12
+            // W2, W7, O5,O6
+             [
+                'tipe' => 'SO',
+                'strategi_satu' => '9',
+                'strategi_dua' => '14',
+                'strategi_tiga' => '19',
+                'strategi_empat' => '20' ,
+            ],
+
+
+            // Strategi dari peringkat 13
+            // W3, O1, O3
+             [
+                'tipe' => 'SO',
+                'strategi_satu' => '10',
+                'strategi_dua' => '15',
+                'strategi_tiga' => '17',
+                'strategi_empat' => null ,
+            ],
+
+
+              // Strategi dari peringkat 14
+              //   W5, O1
+             [
+                'tipe' => 'SO',
+                'strategi_satu' => '12',
+                'strategi_dua' => '15',
+                'strategi_tiga' => null,
+                'strategi_empat' => null ,
+            ],
+
+             // Strategi dari peringkat 16
+              //   W4, W6, T1
+             [
+                'tipe' => 'SO',
+                'strategi_satu' => '11',
+                'strategi_dua' => '13',
+                'strategi_tiga' => '21',
+                'strategi_empat' => null ,
+            ],
+
+
+               // Strategi dari peringkat 17, 19
+              //   W1,W2,T4
+             [
+                'tipe' => 'SO',
+                'strategi_satu' => '8',
+                'strategi_dua' => '9',
+                'strategi_tiga' => '24',
+                'strategi_empat' => null ,
+            ],
+
+
+               // Strategi dari peringkat 18
+              //   W7, W3, T5
+             [
+                'tipe' => 'SO',
+                'strategi_satu' => '14',
+                'strategi_dua' => '10',
+                'strategi_tiga' => '25',
+                'strategi_empat' => null ,
+            ],
+
+
+
+
+
+
+
+
+
         ];
 
 
@@ -125,6 +159,8 @@ class StrategiSeeder extends Seeder
                 'tipe' => $s['tipe'],
                 'strategi_satu' => $s['strategi_satu'],
                 'strategi_dua' => $s['strategi_dua'],
+                'strategi_tiga' => $s['strategi_tiga'],
+                'strategi_empat' => $s['strategi_empat'],
             ]);
 
             //  Attach ke tabel pivot kriteria_strategis

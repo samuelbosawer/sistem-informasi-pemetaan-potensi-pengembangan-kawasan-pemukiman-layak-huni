@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="media-body">
                                     <p class="widget-text">Jenis Kriteria</p>
-                                    <p class="widget-numeric-value">{{ $kriteria }}</p>
+                                    <p class="widget-numeric-value">{{ $kriteria_sum }}</p>
                                 </div>
                             </div>
                             <div class="d-flex w-bottom text-center">

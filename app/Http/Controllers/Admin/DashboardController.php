@@ -19,7 +19,7 @@ class DashboardController extends Controller
         $data = DB::table('distriks')->get();
         $distrik_jumlah= Distrik::get()->count();
         $keluhan = Keluhan::get()->count();
-        $kriteria = JenisKriteria::get()->count();
+        $kriteria_sum = JenisKriteria::get()->count();
 
          if (Auth::user()->hasRole('investor'))
          {
@@ -239,7 +239,7 @@ class DashboardController extends Controller
         }
 
         $geojson  = json_encode($geojson);
-        return view('admin.dashboard.index', compact('geojson', 'distrik_jumlah', 'keluhan', 'kriteria'));
+        return view('admin.dashboard.index', compact('geojson', 'distrik_jumlah', 'keluhan', 'kriteria_sum'));
     }
 
 

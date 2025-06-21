@@ -67,6 +67,7 @@
                                                         <td>{{++$i}}</td>
                                                         <td> {{$data->keluhan}}</td>
                                                         <td> {{$data->tanggal}}  </td>
+
                                                         <td> {{$data->distrik->nama_distrik ?? '-'}}  </td>
                                                         <td>
                                                             @if ($data->foto != null)
