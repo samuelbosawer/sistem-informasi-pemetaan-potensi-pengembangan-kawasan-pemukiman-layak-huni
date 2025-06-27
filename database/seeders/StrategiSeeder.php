@@ -41,7 +41,7 @@ class StrategiSeeder extends Seeder
             // Strategi dari peringkat 6
             //    S5, S4, S3, O3
             [
-                'tipe' => 'SO',
+                'tipe' => 'ST',
                 'strategi_satu' => '6',
                 'strategi_dua' => '7',
                 'strategi_tiga' => null,
@@ -51,7 +51,7 @@ class StrategiSeeder extends Seeder
 
             // Strategi dari peringkat 7 -8, 10
             [
-                'tipe' => 'SO',
+                'tipe' => 'ST',
                 'strategi_satu' => '2',
                 'strategi_dua' => '25',
                 'strategi_tiga' => null,
@@ -60,7 +60,7 @@ class StrategiSeeder extends Seeder
 
           // Strategi dari peringkat 9
              [
-                'tipe' => 'SO',
+                'tipe' => 'ST',
                 'strategi_satu' => '1',
                 'strategi_dua' => '21',
                 'strategi_tiga' => '22',
@@ -71,7 +71,7 @@ class StrategiSeeder extends Seeder
              // Strategi dari peringkat 11, 15
             //  W1, W4, O4
              [
-                'tipe' => 'SO',
+                'tipe' => 'WO',
                 'strategi_satu' => '8',
                 'strategi_dua' => '11',
                 'strategi_tiga' => '18',
@@ -82,7 +82,7 @@ class StrategiSeeder extends Seeder
             // Strategi dari peringkat 12
             // W2, W7, O5,O6
              [
-                'tipe' => 'SO',
+                'tipe' => 'WO',
                 'strategi_satu' => '9',
                 'strategi_dua' => '14',
                 'strategi_tiga' => '19',
@@ -93,7 +93,7 @@ class StrategiSeeder extends Seeder
             // Strategi dari peringkat 13
             // W3, O1, O3
              [
-                'tipe' => 'SO',
+                'tipe' => 'WO',
                 'strategi_satu' => '10',
                 'strategi_dua' => '15',
                 'strategi_tiga' => '17',
@@ -104,7 +104,7 @@ class StrategiSeeder extends Seeder
               // Strategi dari peringkat 14
               //   W5, O1
              [
-                'tipe' => 'SO',
+                'tipe' => 'WO',
                 'strategi_satu' => '12',
                 'strategi_dua' => '15',
                 'strategi_tiga' => null,
@@ -114,7 +114,7 @@ class StrategiSeeder extends Seeder
              // Strategi dari peringkat 16
               //   W4, W6, T1
              [
-                'tipe' => 'SO',
+                'tipe' => 'WT',
                 'strategi_satu' => '11',
                 'strategi_dua' => '13',
                 'strategi_tiga' => '21',
@@ -125,7 +125,7 @@ class StrategiSeeder extends Seeder
                // Strategi dari peringkat 17, 19
               //   W1,W2,T4
              [
-                'tipe' => 'SO',
+                'tipe' => 'WT',
                 'strategi_satu' => '8',
                 'strategi_dua' => '9',
                 'strategi_tiga' => '24',
@@ -136,7 +136,7 @@ class StrategiSeeder extends Seeder
                // Strategi dari peringkat 18
               //   W7, W3, T5
              [
-                'tipe' => 'SO',
+                'tipe' => 'WT',
                 'strategi_satu' => '14',
                 'strategi_dua' => '10',
                 'strategi_tiga' => '25',

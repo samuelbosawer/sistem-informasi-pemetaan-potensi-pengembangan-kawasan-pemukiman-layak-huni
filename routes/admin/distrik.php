@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\DistrikController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['auth', 'role:admin']], function () {
+Route::group(['middleware' => ['auth', 'role:admin']], function () { 
 
     Route::controller(DistrikController::class)->group(function(){
         Route::get('distrik', [DistrikController::class, 'index'])->name('distrik');
