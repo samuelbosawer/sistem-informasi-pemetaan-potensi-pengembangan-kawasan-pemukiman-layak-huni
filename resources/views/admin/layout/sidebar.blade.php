@@ -30,7 +30,7 @@
              <div class="shadow-bottom"></div>
              <ul class="list-unstyled menu-categories" id="accordionExample">
                  <ul class="list-unstyled menu-categories" id="accordionExample">
-                     <li class="menu @if (Request::segment(1) == 'dashboard' && Request::segment(2) == null) active @endif">
+                     <li class="menu @if (Request::segment(1) == 'dashboard' && Request::segment(2) == null || Request::segment(2) == 'peta'  )  active @endif">
                          <a href="{{ route('dashboard.home') }}" aria-expanded="false" class="dropdown-toggle">
                              <div class="">
                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

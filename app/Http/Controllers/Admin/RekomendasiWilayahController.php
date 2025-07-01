@@ -110,36 +110,45 @@ class RekomendasiWilayahController extends Controller
         }
 
 
-        $idealPositive = [];
-        $idealNegative = [];
+      $idealPositive = [];
+$idealNegative = [];
 
-        foreach ($kriterias as $kriteria) {
-            $values = collect($distriks)->map(fn($d) => $weighted[$kriteria][$d] ?? 0);
+foreach ($kriterias as $kriteria) {
+    $values = collect($distriks)->map(fn($d) => $weighted[$kriteria][$d] ?? 0);
 
-            $idealPositive[$kriteria] = $values->max();
-            $idealNegative[$kriteria] = $values->min();
-        }
+    // Perhatikan tambahan di sini
+    $tipe = $jenisKriteria[$kriteria]->label ?? 'Benefit';
+
+    if (strtolower($tipe) === 'cost') {
+        $idealPositive[$kriteria] = $values->min();
+        $idealNegative[$kriteria] = $values->max();
+    } else {
+        $idealPositive[$kriteria] = $values->max();
+        $idealNegative[$kriteria] = $values->min();
+    }
+}
 
 
-        $jarakIdealPositif = [];
-        $jarakIdealNegatif = [];
+$jarakIdealPositif = [];
+$jarakIdealNegatif = [];
 
-        foreach ($distriks as $distrik) {
-            $sumPositif = 0;
-            $sumNegatif = 0;
+foreach ($distriks as $distrik) {
+    $sumPositif = 0;
+    $sumNegatif = 0;
 
-            foreach ($kriterias as $kriteria) {
-                $value = $weighted[$kriteria][$distrik] ?? 0;
-                $aPlus = $idealPositive[$kriteria] ?? 0;
-                $aMinus = $idealNegative[$kriteria] ?? 0;
+    foreach ($kriterias as $kriteria) {
+        $value = $weighted[$kriteria][$distrik] ?? 0;
+        $aPlus = $idealPositive[$kriteria] ?? 0;
+        $aMinus = $idealNegative[$kriteria] ?? 0;
 
-                $sumPositif += pow($value - $aPlus, 2);
-                $sumNegatif += pow($value - $aMinus, 2);
-            }
+        $sumPositif += pow($value - $aPlus, 2);
+        $sumNegatif += pow($value - $aMinus, 2);
+    }
 
-            $jarakIdealPositif[$distrik] = round(sqrt($sumPositif), 3);
-            $jarakIdealNegatif[$distrik] = round(sqrt($sumNegatif), 3);
-        }
+    $jarakIdealPositif[$distrik] = round(sqrt($sumPositif), 3);
+    $jarakIdealNegatif[$distrik] = round(sqrt($sumNegatif), 3);
+}
+
 
 $distrikList = Distrik::whereIn('kode_distrik', $distriks)->pluck('nama_distrik', 'kode_distrik');
 $rekomendasi = Rekomendasi::with('strategi.satu', 'strategi.dua', 'strategi.tiga', 'strategi.empat', 'distrik')->get();
@@ -148,18 +157,19 @@ $preferensi = [];
 foreach ($distriks as $distrik) {
     $dPlus = $jarakIdealPositif[$distrik] ?? 0;
     $dMinus = $jarakIdealNegatif[$distrik] ?? 0;
-    $preferensi[$distrik] = ($dPlus + $dMinus) > 0
-        ? round($dMinus / ($dPlus + $dMinus), 4)
-        : 0;
+
+    if (($dPlus + $dMinus) != 0) {
+        $preferensi[$distrik] = round($dMinus / ($dPlus + $dMinus), 4);
+    } else {
+        $preferensi[$distrik] = 0;
+    }
 }
+
 
 $ranking = collect($preferensi)
     ->sortDesc()
     ->map(function ($value, $kodeDistrik) use ($distrikList, $rekomendasi) {
-        // Ambil semua rekomendasi yang sesuai dengan kode distrik
         $rekoms = $rekomendasi->where('kode_distrik', $kodeDistrik);
-
-        // Kategorisasi strategi per tipe
         $tipeStrategi = [];
         $rekomendasiIds = [];
 
@@ -177,12 +187,12 @@ $ranking = collect($preferensi)
             $tipeStrategi[$tipe] = array_unique(array_merge($tipeStrategi[$tipe] ?? [], $strategiList));
         }
 
-        // Ambil data distrik lengkap dengan geojson
         $distrik = Distrik::where('kode_distrik', $kodeDistrik)->first();
 
         return [
             'kode_distrik' => $kodeDistrik,
             'nama_distrik' => $distrik?->nama_distrik ?? 'Tidak Diketahui',
+            'id_distrik' => $distrik?->id ?? 'Tidak Diketahui',
             'nilai' => $value,
             'strategi_bertipe' => $tipeStrategi,
             'rekomendasi_ids' => array_unique($rekomendasiIds),

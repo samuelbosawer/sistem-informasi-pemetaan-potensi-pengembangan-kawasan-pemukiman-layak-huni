@@ -36,9 +36,18 @@
                             INFORMASI PEMETAAN </h1>
                         <p class="header_subtitle pt-4 text-white mx-auto">SIstem ini membantu dalam pemetaan potensi
                             pengembangan kawasan pemukiman layar huni menggunakan metode TOPSIS dan SWOT</p>
-                        <div class="header_btn position-relative">
-                            <a href="{{route('daftar')}}" class="btn btn-primary rounded-pill mt-4">Daftar Akun  </a>
-                        </div>
+                            @if(!Auth::User())
+                                    <div class="header_btn position-relative">
+                                    <a href="{{route('daftar')}}" class="btn btn-primary rounded-pill mt-4">Daftar Akun  </a>
+                                </div>
+                            @endif
+
+                                   @if (Auth::User() && Auth::user()->hasRole('investor'))
+                                    <div class="header_btn position-relative">
+                                    <a href="{{route('dashboard.keluhan.tambah')}}" class="btn btn-primary rounded-pill mt-4">Buat Keluhan  </a>
+                                </div>
+                            @endif
+
                     </div>
                 </div>
             </div>

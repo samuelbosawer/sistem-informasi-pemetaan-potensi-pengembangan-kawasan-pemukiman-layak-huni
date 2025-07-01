@@ -143,20 +143,15 @@ foreach ($distriks as $distrik) {
         $aMinus = $idealNegative[$kriteria] ?? 0;
 
 
-
-
         // Hitung selisih kuadrat untuk D+ dan D-
         $sumPositif += pow($value - $aPlus, 2);
         $sumNegatif += pow($value - $aMinus, 2);
-
-
 
     }
 
     // Akar dari total selisih kuadrat
     $jarakIdealPositif[$distrik] = round(sqrt($sumPositif), 3);
     $jarakIdealNegatif[$distrik] = round(sqrt($sumNegatif), 3);
-
 
 }
 
@@ -185,30 +180,6 @@ $ranking = collect($preferensi)
     ->values()
     ->all();
 
-// // 3. Ambil semua strategi (tipe: SO, ST, WO, WT) dan group berdasarkan peringkat
-// $strategiByPeringkat = Peringkat::get()
-//     ->groupBy('peringkat');
-
-// // 4. Gabungkan ranking + strategi (dengan keterangan)
-// $hasilGabungan = collect($ranking)->map(function ($item, $index) use ($strategiByPeringkat) {
-//     $peringkat = $index + 1;
-//     $strategiList = $strategiByPeringkat[$peringkat] ?? collect();
-//     $tipe = $strategiByPeringkat[$peringkat] ?? collect();
-
-//    $strategiListFormatted = $strategiList->map(function ($item) {
-//     return [
-//         'tipe'       => $item->tipe,
-//         'keterangan' => $item->keterangan,
-//     ];
-// })->values()->all();
-
-//     return [
-//         'distrik'   => $item['distrik'],
-//         'nilai'     => $item['nilai'],
-//         'peringkat' => $peringkat,
-//         'strategi'  => $strategiListFormatted, // tipe => array of strategi + keterangan
-//     ];
-// });
 
 
 
