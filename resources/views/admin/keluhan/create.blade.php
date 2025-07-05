@@ -148,6 +148,7 @@
 
                                     <label for="foto" class="form-label">Foto</label>
                                     <br>
+
                                       @if (isset($data) && $data->foto)
                                         <img src="{{ asset($data->foto) }}" width="200" class="mb-3" rounded alt=""
                                             srcset="">
@@ -170,16 +171,17 @@
 
                                 <div class="col-md-12">
                                     @if (Request::segment(3) == 'detail')
-                                        @if (Auth::user()->hasRole('investor'))
+                                        @if (Auth::user()->hasRole('investor') || Auth::user()->hasRole('admin'))
                                             <a href="{{ route('dashboard.keluhan.ubah', $data->id) }}"
                                                 class="btn btn-primary"> Ubah Data</a>
                                         @endif
-                                        <a href="{{ route('dashboard.keluhan') }}" class="btn btn-success"> Kembali</a>
                                     @else
-                                        @if (Auth::user()->hasRole('investor'))
+                                        @if (Auth::user()->hasRole('investor')|| Auth::user()->hasRole('admin') )
                                             <button class="btn btn-primary">Simpan </button>
                                         @endif
                                     @endif
+                                        <a href="{{ route('dashboard.keluhan') }}" class="btn btn-success"> Kembali</a>
+
 
                                 </div>
 

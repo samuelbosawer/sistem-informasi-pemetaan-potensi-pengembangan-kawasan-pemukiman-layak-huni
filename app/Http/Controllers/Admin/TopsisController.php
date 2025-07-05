@@ -180,6 +180,30 @@ $ranking = collect($preferensi)
     ->values()
     ->all();
 
+// // 3. Ambil semua strategi (tipe: SO, ST, WO, WT) dan group berdasarkan peringkat
+// $strategiByPeringkat = Peringkat::get()
+//     ->groupBy('peringkat');
+
+// // 4. Gabungkan ranking + strategi (dengan keterangan)
+// $hasilGabungan = collect($ranking)->map(function ($item, $index) use ($strategiByPeringkat) {
+//     $peringkat = $index + 1;
+//     $strategiList = $strategiByPeringkat[$peringkat] ?? collect();
+//     $tipe = $strategiByPeringkat[$peringkat] ?? collect();
+
+//    $strategiListFormatted = $strategiList->map(function ($item) {
+//     return [
+//         'tipe'       => $item->tipe,
+//         'keterangan' => $item->keterangan,
+//     ];
+// })->values()->all();
+
+//     return [
+//         'distrik'   => $item['distrik'],
+//         'nilai'     => $item['nilai'],
+//         'peringkat' => $peringkat,
+//         'strategi'  => $strategiListFormatted, // tipe => array of strategi + keterangan
+//     ];
+// });
 
 
 
