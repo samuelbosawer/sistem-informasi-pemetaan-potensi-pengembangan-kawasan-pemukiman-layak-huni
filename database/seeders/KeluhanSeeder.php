@@ -17,7 +17,7 @@ class KeluhanSeeder extends Seeder
         $keluhan = Keluhan::create([
             'keluhan' => 'Tanah Rawa',
             'tanggal' => Carbon::create(2025, 4, 12),
-            'foto' => null,
+            'foto' => 'foto/keluhan/1751683720-images%20(1).jpg',
             'latitude' => -3.139209,
             'longitude' => 139.948453,
             'status' => 'Publish',
@@ -29,7 +29,7 @@ class KeluhanSeeder extends Seeder
         $keluhan = Keluhan::create([
             'keluhan' => 'Tanah Adat',
             'tanggal' => Carbon::create(2025, 4, 12),
-            'foto' => null,
+            'foto' => 'foto/keluhan/1751683720-images%20(1).jpg',
             'latitude' => -3.209611,
             'longitude' =>  139.965873,
             'status' => 'Publish',
@@ -42,7 +42,7 @@ class KeluhanSeeder extends Seeder
         $keluhan = Keluhan::create([
             'keluhan' => 'Tidak ada pelepasan tanah',
             'tanggal' => Carbon::create(2025, 4, 12),
-            'foto' => null,
+            'foto' => 'foto/keluhan/1751683720-images%20(1).jpg',
             'latitude' => -3.209459,
             'longitude' => 139.961211,
             'status' => 'Publish',
