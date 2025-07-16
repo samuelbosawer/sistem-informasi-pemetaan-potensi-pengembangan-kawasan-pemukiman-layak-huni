@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Distrik;
 use App\Models\Kriteria;
+use App\Models\Topsis;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -39,12 +40,13 @@ class DistrikController extends Controller
         $request->validate(
             [
                 'nama_distrik' => 'required',
-                'kode_distrik' => 'required',
+                'kode_distrik' => 'required|unique:distriks,kode_distrik',
                 'geojson' => 'json',
             ],
             [
                 'nama_distrik.required' => 'Tidak boleh kosong',
                 'kode_distrik.required' => 'Tidak boleh kosong',
+                'kode_distrik.unique' => 'Kode sudah terdaftar',
                 'geojson.json' => 'Harus format json',
             ]
         );
@@ -81,7 +83,7 @@ class DistrikController extends Controller
         $request->validate(
             [
                 'nama_distrik' => 'required',
-                'kode_distrik' => 'required',
+                // 'kode_distrik' => 'required',
                 'geojson' => 'json',
             ],
             [
@@ -92,7 +94,7 @@ class DistrikController extends Controller
         );
         $data = Distrik::find($id);
         $data->nama_distrik   = $request->nama_distrik;
-        $data->kode_distrik   = $request->kode_distrik;
+        // $data->kode_distrik   = $request->kode_distrik;
         $data->keterangan   = $request->keterangan;
         $data->geojson   = $request->geojson;
 
@@ -105,6 +107,7 @@ class DistrikController extends Controller
     public function destroy(string $id)
     {
         $data = Distrik::find($id);
+        $topsis = Topsis::where('kode_distrik',$data->kode_distrik)->delete();
         $data->delete();
         return redirect()->back();
     }

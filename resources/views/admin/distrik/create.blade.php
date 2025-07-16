@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="kode_distrik" class="form-label">Kode Distrik <span class="text-danger">*</span></label>
-                                    <input type="text" name="kode_distrik" @if (Request::segment(3) == 'detail') disabled @endif  value="{{old('kode_distrik') ?? ($data->kode_distrik ?? '')}}" class="form-control" id="nama_distrik">
+                                    <input type="text" name="kode_distrik" @if (Request::segment(3) == 'detail' || Request::segment(4) == 'ubah') disabled @endif  value="{{old('kode_distrik') ?? ($data->kode_distrik ?? '')}}" class="form-control" id="nama_distrik">
                                     @if ($errors->has('kode_distrik'))
                                         <label class="text-danger"> {{ $errors->first('kode_distrik') }}
                                         </label>

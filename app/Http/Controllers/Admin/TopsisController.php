@@ -254,13 +254,27 @@ $ranking = collect($preferensi)
                 'nilai.required' => 'Tidak boleh kosong',
             ]
         );
-        $data = new Topsis();
+
+     $topsis = Topsis::where('kode_distrik', $request->kode_distrik)
+                ->where('kode_kriteria', $request->kode_kriteria)
+                ->first();
+
+
+        if ($topsis) {
+            alert()->error('Peringkatan', 'Data sudah terdaftar!!')->autoclose(3000);
+        return redirect()->route('dashboard.topsis.tambah');
+
+        }else{
+              $data = new Topsis();
         $data->kode_distrik   = $request->kode_distrik;
         $data->kode_kriteria   = $request->kode_kriteria;
         $data->nilai   = $request->nilai;
         $data->save();
         alert()->success('Berhasil', 'Tambah data berhasil')->autoclose(3000);
         return redirect()->route('dashboard.topsis');
+        }
+
+
     }
 
     public function edit($id)
