@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\JenisKriteria;
+use App\Models\Topsis;
 
 class JenisKriteriaController extends Controller
 {
@@ -37,13 +38,14 @@ class JenisKriteriaController extends Controller
         $request->validate(
             [
                 'kriteria' => 'required',
-                'kode_kriteria' => 'required',
+                'kode_kriteria' => 'required|unique:jenis_kriterias,kode_kriteria',
                 'penilaian' => 'required|numeric',
                 'rating' => 'required|numeric',
             ],
             [
                 'kriteria.required' => 'Tidak boleh kosong',
                 'kode_kriteria.required' => 'Tidak boleh kosong',
+                'kode_kriteria.unique' => 'Tidak boleh sama',
                 'penilaian.required' => 'Tidak boleh kosong',
                 'penilaian.numeric' => 'Tidak boleh huruf',
                 'rating.required' => 'Tidak boleh kosong',
@@ -86,13 +88,11 @@ class JenisKriteriaController extends Controller
        $request->validate(
             [
                 'kriteria' => 'required',
-                'kode_kriteria' => 'required',
                 'penilaian' => 'required|numeric',
                 'rating' => 'required|numeric',
             ],
             [
                 'kriteria.required' => 'Tidak boleh kosong',
-                'kode_kriteria.required' => 'Tidak boleh kosong',
                 'penilaian.required' => 'Tidak boleh kosong',
                 'penilaian.numeric' => 'Tidak boleh huruf',
                 'rating.required' => 'Tidak boleh kosong',
@@ -102,7 +102,6 @@ class JenisKriteriaController extends Controller
         );
         $data = JenisKriteria::find($id);
         $data->kriteria   = $request->kriteria;
-        $data->kode_kriteria   = $request->kode_kriteria;
         $data->penilaian   = $request->penilaian;
         $data->rating   = $request->rating;
         $data->faktor   = $request->faktor;
@@ -118,6 +117,7 @@ class JenisKriteriaController extends Controller
     public function destroy(string $id)
     {
         $data = JenisKriteria::find($id);
+        $topsis = Topsis::where('kode_kriteria',$data->kode_kriteria)->delete();
         $data->delete();
         return redirect()->back();
     }

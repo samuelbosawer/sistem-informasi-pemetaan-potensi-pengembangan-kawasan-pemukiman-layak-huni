@@ -56,7 +56,7 @@
                                     <label for="kode_kriteria" class="form-label">Kode Kriteria <span
                                             class="text-danger">*</span> </label>
                                     <input type="text" name="kode_kriteria"
-                                        @if (Request::segment(3) == 'detail') disabled @endif
+                                        @if (Request::segment(3) == 'detail' || Request::segment(4) == 'ubah' ) disabled @endif
                                         value="{{ old('kode_kriteria') ?? ($data->kode_kriteria ?? '') }}"
                                         class="form-control" id="kode_kriteria">
                                     @if ($errors->has('kode_kriteria'))
