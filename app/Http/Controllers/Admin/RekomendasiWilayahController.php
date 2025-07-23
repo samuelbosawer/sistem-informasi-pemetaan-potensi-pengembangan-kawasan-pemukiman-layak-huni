@@ -174,14 +174,14 @@ $ranking = collect($preferensi)
         $rekomendasiIds = [];
 
         foreach ($rekoms as $rekom) {
-            $tipe = $rekom->strategi->tipe ?? 'Tidak Diketahui';
+            $tipe = $rekom->strategi->tipe ?? 'Belum ada';
             $rekomendasiIds[] = $rekom->id;
 
             $strategiList = collect([
-                optional($rekom->strategi->satu)->kriteria,
-                optional($rekom->strategi->dua)->kriteria,
-                optional($rekom->strategi->tiga)->kriteria,
-                optional($rekom->strategi->empat)->kriteria,
+               optional(optional($rekom->strategi)->satu)->kriteria,
+        optional(optional($rekom->strategi)->dua)->kriteria,
+        optional(optional($rekom->strategi)->tiga)->kriteria,
+        optional(optional($rekom->strategi)->empat)->kriteria,
             ])->filter()->unique()->values()->all();
 
             $tipeStrategi[$tipe] = array_unique(array_merge($tipeStrategi[$tipe] ?? [], $strategiList));
@@ -191,8 +191,8 @@ $ranking = collect($preferensi)
 
         return [
             'kode_distrik' => $kodeDistrik,
-            'nama_distrik' => $distrik?->nama_distrik ?? 'Tidak Diketahui',
-            'id_distrik' => $distrik?->id ?? 'Tidak Diketahui',
+            'nama_distrik' => $distrik?->nama_distrik ?? 'Belum ada',
+            'id_distrik' => $distrik?->id ?? 'Belum ada',
             'nilai' => $value,
             'strategi_bertipe' => $tipeStrategi,
             'rekomendasi_ids' => array_unique($rekomendasiIds),
@@ -357,7 +357,7 @@ $ranking = collect($preferensi)
         $rekomendasiIds = [];
 
         foreach ($rekoms as $rekom) {
-            $tipe = $rekom->strategi->tipe ?? 'Tidak Diketahui';
+            $tipe = $rekom->strategi->tipe ?? 'Belum ada';
             $rekomendasiIds[] = $rekom->id;
 
             $strategiList = collect([
@@ -375,7 +375,7 @@ $ranking = collect($preferensi)
 
         return [
             'kode_distrik' => $kodeDistrik,
-            'nama_distrik' => $distrik?->nama_distrik ?? 'Tidak Diketahui',
+            'nama_distrik' => $distrik?->nama_distrik ?? 'Belum ada',
             'nilai' => $value,
             'strategi_bertipe' => $tipeStrategi,
             'rekomendasi_ids' => array_unique($rekomendasiIds),
