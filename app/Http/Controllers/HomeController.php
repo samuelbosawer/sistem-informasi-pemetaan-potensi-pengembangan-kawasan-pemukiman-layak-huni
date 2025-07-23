@@ -187,7 +187,7 @@ $ranking = collect($preferensi)
         $rekomendasiIds = [];
 
         foreach ($rekoms as $rekom) {
-    $tipe = optional($rekom->strategi)->tipe ?? 'Belum ada';
+    $tipe = optional($rekom->strategi)->tipe ?? '';
     $rekomendasiIds[] = $rekom->id;
 
     $strategiList = collect([
@@ -204,8 +204,8 @@ $ranking = collect($preferensi)
 
         return [
             'kode_distrik' => $kodeDistrik,
-            'nama_distrik' => $distrik?->nama_distrik ?? 'Belum ada',
-            'id_distrik' => $distrik?->id ?? 'Belum ada',
+            'nama_distrik' => $distrik?->nama_distrik ?? '',
+            'id_distrik' => $distrik?->id ?? '',
             'nilai' => $value,
             'strategi_bertipe' => $tipeStrategi,
             'rekomendasi_ids' => array_unique($rekomendasiIds),
@@ -683,7 +683,7 @@ $ranking = collect($preferensi)
         $rekomendasiIds = [];
 
         foreach ($rekoms as $rekom) {
-            $tipe = $rekom->strategi->tipe ?? 'Belum ada';
+            $tipe = $rekom->strategi->tipe ?? '';
             $rekomendasiIds[] = $rekom->id;
 
 
@@ -701,8 +701,8 @@ $ranking = collect($preferensi)
 
         return [
             'kode_distrik' => $kodeDistrik,
-            'nama_distrik' => $distrik?->nama_distrik ?? 'Belum ada',
-            'id_distrik' => $distrik?->id ?? 'Belum ada',
+            'nama_distrik' => $distrik?->nama_distrik ?? '',
+            'id_distrik' => $distrik?->id ?? '',
             'nilai' => $value,
             'strategi_bertipe' => $tipeStrategi,
             'rekomendasi_ids' => array_unique($rekomendasiIds),
