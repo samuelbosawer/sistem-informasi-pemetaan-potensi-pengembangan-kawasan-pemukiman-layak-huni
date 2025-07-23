@@ -686,11 +686,12 @@ $ranking = collect($preferensi)
             $tipe = $rekom->strategi->tipe ?? 'Tidak Diketahui';
             $rekomendasiIds[] = $rekom->id;
 
+
             $strategiList = collect([
-                optional($rekom->strategi->satu)->kriteria,
-                optional($rekom->strategi->dua)->kriteria,
-                optional($rekom->strategi->tiga)->kriteria,
-                optional($rekom->strategi->empat)->kriteria,
+                optional(optional($rekom->strategi)->satu)->kriteria,
+        optional(optional($rekom->strategi)->dua)->kriteria,
+        optional(optional($rekom->strategi)->tiga)->kriteria,
+        optional(optional($rekom->strategi)->empat)->kriteria,
             ])->filter()->unique()->values()->all();
 
             $tipeStrategi[$tipe] = array_unique(array_merge($tipeStrategi[$tipe] ?? [], $strategiList));
