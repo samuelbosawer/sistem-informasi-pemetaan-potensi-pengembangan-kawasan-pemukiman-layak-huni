@@ -27,7 +27,7 @@
                                                 <th class="">Peringkat</th>
                                                 <th class="">Distrik</th>
                                                 <th class="">Nilai Preferensi</th>
-                                                <th class="">Strategi</th>
+                                                {{-- <th class="">Strategi</th> --}}
 
                                             </tr>
                                         </thead>
@@ -37,47 +37,7 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item['nama_distrik'] }}</td>
                                                     <td>{{ $item['nilai'] }}</td>
-                                                    <td>
-                                                        @foreach ($item['strategi_bertipe'] as $tipe => $strategis)
-                                                            <strong>{{ $tipe }}</strong>
-                                                            <ul>
-                                                                @foreach ($strategis as $strat)
-                                                                    <li>{{ $strat }}</li>
-                                                                @endforeach
-                                                            </ul>
 
-                                                            {{-- Tombol hapus rekomendasi berdasarkan tipe --}}
-                                                            @php
-                                                                $idRekom = \App\Models\Rekomendasi::whereHas(
-                                                                    'distrik',
-                                                                    fn($q) => $q->where(
-                                                                        'kode_distrik',
-                                                                        $item['kode_distrik'],
-                                                                    ),
-                                                                )
-                                                                    ->whereHas(
-                                                                        'strategi',
-                                                                        fn($q) => $q->where('tipe', $tipe),
-                                                                    )
-                                                                    ->pluck('id');
-                                                            @endphp
-
-                                                            @foreach ($idRekom as $id)
-                                                                @if (Auth::check() && Auth::user()->hasRole('admin'))
-                                                                    <form
-                                                                        action="{{ route('dashboard.rekomendasi.hapus', $id) }}"
-                                                                        method="POST" style="display:inline;">
-                                                                        @csrf @method('DELETE')
-                                                                        <button class="btn btn-sm btn-danger"
-                                                                            onclick="return confirm('Yakin ingin menghapus rekomendasi tipe {{ $tipe }} untuk distrik {{ $item['nama_distrik'] }}?')">
-                                                                            Hapus {{ $tipe }}
-                                                                        </button>
-                                                                    </form>
-                                                                @endif
-                                                                <br>
-                                                            @endforeach
-                                                        @endforeach
-                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

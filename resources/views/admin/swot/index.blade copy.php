@@ -117,10 +117,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @php
-                                                    $bobotA = 0;
-                                                    $skorA = 0;
-                                                @endphp
                                                 @forelse ($nilaiA as $data)
                                                     <tr>
                                                         <td> {{ $data->kode_kriteria }}</td>
@@ -130,10 +126,6 @@
                                                         </td>
                                                         <td> {{ $data->rating }} </td>
                                                         <td> {{ $skor = $data->rating * $bobot }} </td>
-                                                    @php
-                                                        $bobotA = $bobotA + $bobot;
-                                                        $skorA = $skorA + $skor;
-                                                    @endphp
 
                                                     </tr>
                                                 @empty
@@ -144,9 +136,9 @@
                                                 <tr>
                                                     <td colspan="2">Jumlah Faktor Internal </td>
                                                     <td>{{ $totalNilaiA }}</td>
-                                                    <td>{{ number_format($bobotA, 2, ',', '.') }}</td>
                                                     <td></td>
-                                                    <td>{{ number_format($skorA, 2, ',', '.') }}</td>
+                                                    <td></td>
+                                                    <td></td>
 
                                                 </tr>
 
@@ -174,12 +166,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-
-                                                 @php
-                                                    $bobotB = 0;
-                                                    $skorB = 0;
-                                                @endphp
-
                                                 @forelse ($nilaiB as $data)
                                                     <tr>
                                                         <td> {{ $data->kode_kriteria }}</td>
@@ -189,10 +175,6 @@
                                                         </td>
                                                         <td> {{ $data->rating }} </td>
                                                         <td> {{ $skor = $data->rating * $bobot }} </td>
-                                                         @php
-                                                             $bobotB = $bobotB + $bobot;
-                                                             $skorB = $skorB + $skor;
-                                                         @endphp
 
                                                     </tr>
                                                 @empty
@@ -203,9 +185,9 @@
                                                 <tr>
                                                     <td colspan="2">Jumlah Faktor Eksternal </td>
                                                     <td>{{ $totalNilaiB }}</td>
-                                                    <td>{{ number_format($bobotB, 2, ',', '.') }}</td>
                                                     <td></td>
-                                                    <td>{{ number_format($skorB, 2, ',', '.') }}</td>
+                                                    <td></td>
+                                                    <td></td>
 
                                                 </tr>
 
@@ -227,6 +209,135 @@
 
 
 
+
+
+                            <div class="widget-content widget-content-area mt-5">
+
+                                <div class="d-flex justify-content-between">
+
+                                    <div class="col-6">
+                                        <h3>Rekomendasi Swot</h3>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover table-striped">
+                                            <thead>
+                                                <tr class="bg-primary text-white text-center">
+                                                    <th style="width:10%"></th>
+                                                    <th style="width:45%" class="fw-bolder text-white">Kekuatan (Strength/S)</th>
+                                                    <th style="width:45%" class="fw-bolder text-white">Kelemahan (Weakness/W)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th class="bg-warning text-white text-center align-middle"
+                                                        rowspan="2">
+                                                        Peluang (Opportunity/O)
+                                                    </th>
+                                                    <td>
+                                                        <strong>Strategi SO</strong>
+                                                        <ol type="1">
+                                                            {{-- @dd($so) --}}
+                                                           @foreach ($so as $s)
+                                                                @if (!empty($s->satu->kriteria))
+                                                                    <li>{{ $s->satu->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($s->dua->kriteria))
+                                                                    <li>{{ $s->dua->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($s->tiga->kriteria))
+                                                                    <li>{{ $s->tiga->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($s->empat->kriteria))
+                                                                    <li>{{ $s->empat->kriteria }}</li>
+                                                                @endif
+                                                            @endforeach
+                                                        </ol>
+                                                    </td>
+                                                    <td>
+                                                        <strong>Strategi WO</strong>
+                                                        <ol type="1">
+                                                            @foreach ($wo as $w)
+                                                                @if (!empty($w->satu->kriteria))
+                                                                    <li>{{ $w->satu->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($w->dua->kriteria))
+                                                                    <li>{{ $w->dua->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($w->tiga->kriteria))
+                                                                    <li>{{ $w->tiga->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($w->empat->kriteria))
+                                                                    <li>{{ $w->empat->kriteria }}</li>
+                                                                @endif
+                                                            @endforeach
+                                                        </ol>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <strong>Strategi ST</strong>
+                                                        <ol type="1">
+                                                            @foreach ($st as $s)
+                                                                 @if (!empty($s->satu->kriteria))
+                                                                    <li>{{ $s->satu->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($s->dua->kriteria))
+                                                                    <li>{{ $s->dua->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($s->tiga->kriteria))
+                                                                    <li>{{ $s->tiga->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($s->empat->kriteria))
+                                                                    <li>{{ $s->empat->kriteria }}</li>
+                                                                @endif
+                                                            @endforeach
+                                                        </ol>
+                                                    </td>
+                                                    <td>
+                                                        <strong>Strategi WT</strong>
+                                                        <ol type="1">
+                                                            @foreach ($wt as $w)
+                                                               @if (!empty($w->satu->kriteria))
+                                                                    <li>{{ $w->satu->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($w->dua->kriteria))
+                                                                    <li>{{ $w->dua->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($w->tiga->kriteria))
+                                                                    <li>{{ $w->tiga->kriteria }}</li>
+                                                                @endif
+
+                                                                @if (!empty($w->empat->kriteria))
+                                                                    <li>{{ $w->empat->kriteria }}</li>
+                                                                @endif
+                                                            @endforeach
+                                                        </ol>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+
+
+
+                            </div>
                         @endif
 
 

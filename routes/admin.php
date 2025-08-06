@@ -19,5 +19,6 @@ Route::group(['middleware' => ['auth']], function () {
         require_once 'admin/topsis.php';
         require_once 'admin/strategi.php';
         require_once 'admin/rekomendasi.php';
+        require_once 'admin/periode.php';
  });
 });

@@ -7,6 +7,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
     Route::controller(TopsisController::class)->group(function(){
         Route::get('topsis', [TopsisController::class, 'index'])->name('topsis');
+        Route::get('topsis/hapus-semua', [TopsisController::class, 'hapus_semua'])->name('topsis.hapus.semua');
         Route::get('topsis/tambah', [TopsisController::class, 'create'])->name('topsis.tambah');
         Route::delete('topsis/{id}', [TopsisController::class, 'destroy'])->name('topsis.hapus');
         Route::post('topsis/store', [TopsisController::class, 'store'])->name('topsis.store');
