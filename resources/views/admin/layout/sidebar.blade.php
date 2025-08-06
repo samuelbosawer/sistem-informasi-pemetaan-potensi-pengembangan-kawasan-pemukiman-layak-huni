@@ -174,7 +174,7 @@
 
 
                          <li class="menu @if (Request::segment(2) == 'periode' || Request::segment(3) == 'periode') active @endif">
-                             <a href="{{ route('dashboard.periode') }}" aria-expanded="false"
+                             {{-- <a href="{{ route('dashboard.periode') }}" aria-expanded="false"
                                  class="dropdown-toggle">
                                  <div class="">
                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -191,7 +191,7 @@
                                      <span> Periode Perhitungan </span>
                                  </div>
                              </a>
-                         </li>
+                         </li> --}}
 
 
                          <li class="menu menu-heading">
