@@ -173,7 +173,7 @@
                          </li>
 
 
-                         <li class="menu @if (Request::segment(2) == 'periode' || Request::segment(3) == 'periode') active @endif">
+                         {{-- <li class="menu @if (Request::segment(2) == 'periode' || Request::segment(3) == 'periode') active @endif"> --}}
                              {{-- <a href="{{ route('dashboard.periode') }}" aria-expanded="false"
                                  class="dropdown-toggle">
                                  <div class="">
