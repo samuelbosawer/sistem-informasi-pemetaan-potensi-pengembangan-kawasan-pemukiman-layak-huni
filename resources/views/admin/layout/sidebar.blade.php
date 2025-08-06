@@ -167,7 +167,7 @@
                                              ry="1">
                                          </rect>
                                      </svg>
-                                     <span> Rekomendasi </span>
+                                     <span> Periode </span>
                                  </div>
                              </a>
                          </li>

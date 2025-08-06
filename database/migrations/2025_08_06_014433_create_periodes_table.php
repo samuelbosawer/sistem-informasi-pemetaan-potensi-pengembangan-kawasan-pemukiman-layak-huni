@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('periodes', function (Blueprint $table) {
             $table->id();
+            $table->string('peringkat')->nullable();
+            $table->string('kode_distrik')->nullable();
+            $table->string('nilai')->nullable();
             $table->timestamps();
         });
     }

@@ -44,8 +44,8 @@
 
                                             @if (request('result'))
 
-                                                 <a href="{{ route('dashboard.periode.simpan') }}"
-                                                class="btn btn-success">Simpan Data Perhitungan</a>
+                                                 <a href="{{ route('dashboard.periode.tambah') }}"
+                                                class="btn btn-success">Simpan Periode Data Perhitungan</a>
 
                                             @endif
                                         </div>
