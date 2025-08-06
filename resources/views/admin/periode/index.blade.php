@@ -50,19 +50,20 @@
                                     </div>
                                     <div class="col-6 p-3">
 
-                                        <form action="{{ url(Request::segment(1) . '/' . Request::segment(2)) }}" method="get">
-                                        <div class="form-group">
-                                            <label for="tanggal">Filter Berdasarkan Tanggal & Jam</label>
-                                            <select class="form-control" name="tanggal" onchange="this.form.submit()">
-                                                <option value="">Pilih Tanggal & Jam</option>
-                                                @foreach ($dates as $date)
-                                                    <option value="{{ $date->created_at }}"
-                                                        {{ request('tanggal') == $date->created_at ? 'selected' : '' }}>
-                                                        {{ \Carbon\Carbon::parse($date->created_at)->translatedFormat('d F Y H:i:s') }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                        <form action="{{ url(Request::segment(1) . '/' . Request::segment(2)) }}"
+                                            method="get">
+                                            <div class="form-group">
+                                                <select class="form-control" name="tanggal" onchange="this.form.submit()">
+                                                    <option value="">Pilih Tanggal & Jam</option>
+                                                    @foreach ($dates as $date)
+                                                        <option value="{{ $date->created_at }}"
+                                                            {{ request('tanggal') == $date->created_at ? 'selected' : '' }}>
+                                                            {{ \Carbon\Carbon::parse($date->created_at)->translatedFormat('d F Y H:i:s') }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+
+                                            </div>
                                         </form>
 
                                     </div>

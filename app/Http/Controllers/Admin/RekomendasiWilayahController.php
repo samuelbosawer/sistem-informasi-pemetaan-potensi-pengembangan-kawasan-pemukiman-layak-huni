@@ -22,15 +22,20 @@ class RekomendasiWilayahController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+        $lates = Periode::select('created_at')
+            ->distinct()
+            ->orderBy('created_at', 'desc')
+            ->first();
+
         $query = Periode::query();
 
         if ($request->filled('tanggal')) {
             $query->where('created_at', $request->tanggal);
+        }else{
+            $query->where('created_at', $lates->created_at);
         }
 
-        $datas = $query->get();
-
-
+        $datas = $query->distinct()->get();
 
         return view('admin.periode.index', compact('datas', 'dates'));
     }
