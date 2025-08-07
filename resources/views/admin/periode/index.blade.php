@@ -43,7 +43,7 @@
                                                 Tambah Data </a>
                                         @endif
                                         @if (Auth::user()->hasRole('kepalaBidang'))
-                                            <a target="_blank" href="{{ route('dashboard.keluhan.pdf') }}"
+                                            <a target="_blank" href="{{ route('dashboard.rekomendasi.pdf') }}"
                                                 class="btn btn-danger"> Export PDF </a>
                                         @endif
 

@@ -36,6 +36,33 @@ class RekomendasiWilayahController extends Controller
         return view('admin.periode.index', compact('datas', 'dates'));
     }
 
+    public function pdf(Request $request)
+    {
+         $dates = Periode::select('created_at')
+            ->distinct()
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $lates = Periode::select('created_at')
+            ->distinct()
+            ->orderBy('created_at', 'desc')
+            ->first();
+        $query = Periode::query();
+        if ($request->filled('tanggal')) {
+            $query->where('created_at', $request->tanggal);
+        }elseif(isset($lates->created_at)){
+            $query->where('created_at', $lates->created_at) ?? null;
+        }else{
+
+        }
+        $datas = $query->distinct()->get();
+        $title = 'Laporan Periode Wilayah';
+        $data = [
+            'title' => $title,
+            'ranking' => $datas
+        ];
+        $pdf = Pdf::loadView('admin.rwilayah.pdf', $data);
+        return $pdf->stream('laporan-periode-wilayah.pdf');
+    }
 
 
     public function create()
@@ -79,6 +106,7 @@ class RekomendasiWilayahController extends Controller
 
         return view('admin.rwilayah.create', compact('strategi', 'distrik'));
     }
+
 
 
     public function edit(string $id)
