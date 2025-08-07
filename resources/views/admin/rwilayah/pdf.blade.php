@@ -55,7 +55,6 @@
                                    <th class=" text-center">Peringkat</th>
                                                 <th class=" text-center">Distrik</th>
                                                 <th class=" text-center">Nilai Preferensi</th>
-                                                <th class=" text-center">Strategi</th>
                         </tr>
                         @php
                             $i = 0;
@@ -65,34 +64,7 @@
                                                     <td class="text-center">{{ $loop->iteration }}</td>
                                                     <td>{{ $item['nama_distrik'] }}</td>
                                                     <td>{{ $item['nilai'] }}</td>
-                                                    <td>
-                                                        @foreach ($item['strategi_bertipe'] as $tipe => $strategis)
-                                                            <strong>{{ $tipe }}</strong>
-                                                            <ul>
-                                                                @foreach ($strategis as $strat)
-                                                                    <li>{{ $strat }}</li>
-                                                                @endforeach
-                                                            </ul>
 
-                                                            {{-- Tombol hapus rekomendasi berdasarkan tipe --}}
-                                                            @php
-                                                                $idRekom = \App\Models\Rekomendasi::whereHas(
-                                                                    'distrik',
-                                                                    fn($q) => $q->where(
-                                                                        'kode_distrik',
-                                                                        $item['kode_distrik'],
-                                                                    ),
-                                                                )
-                                                                    ->whereHas(
-                                                                        'strategi',
-                                                                        fn($q) => $q->where('tipe', $tipe),
-                                                                    )
-                                                                    ->pluck('id');
-                                                            @endphp
-
-
-                                                        @endforeach
-                                                    </td>
                                                 </tr>
                                             @endforeach
 
