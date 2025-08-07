@@ -33,7 +33,7 @@
                     @include('admin.layout.breadcumb')
 
 
-                    <div class="col-xl-16 col-lg-6 col-md-6 col-sm-12 layout-spacing">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-spacing">
                         <div class="widget widget-t-sales-widget widget-m-sales ">
                             <h5 class="widget-text text-primary text-center">Keluhan
                             </h5>
@@ -86,18 +86,6 @@
 
                     </div>
 
-                    <div class="col-xl-16 col-lg-6 col-md-6 col-sm-12 layout-spacing">
-                        <div class="widget widget-t-sales-widget widget-m-sales">
-
-                            <h5 class="widget-text text-primary text-center">Strategi
-                            </h5>
-
-                            {!! $biasa !!}
-
-
-
-                        </div>
-                    </div>
 
 
 

@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(JenisKriteriaSeeder::class);
         $this->call(KriteriaSeeder::class);
         $this->call(KeluhanSeeder::class);
-        $this->call(StrategiSeeder::class);
-        $this->call(RekomendasiSeeder::class);
+        // $this->call(StrategiSeeder::class);
+        // $this->call(RekomendasiSeeder::class);
     }
 }
